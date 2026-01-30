@@ -8,3 +8,19 @@
 		@apply text-base leading-relaxed;
 	}
 }
+
+/* Newsletter form - Altcha widget styling */
+@layer components {
+	.altcha-container {
+		@apply flex justify-center py-2;
+	}
+	
+	/* Style the Altcha widget to match site theme */
+	altcha-widget {
+		--altcha-color-base: theme('colors.stone.50');
+		--altcha-color-text: theme('colors.stone.700');
+		--altcha-color-border: theme('colors.stone.300');
+		--altcha-color-border-focus: theme('colors.stone.500');
+		--altcha-border-radius: theme('borderRadius.lg');
+	}
+}
