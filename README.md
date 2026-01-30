@@ -13,6 +13,10 @@ Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.c
 | `npm run build` | Build production site to `./dist/`   |
 | `npm run preview` | Preview the build locally          |
 
+## Hosting
+
+The website is hosted on **Cloudflare Workers/Pages**. Static output is built with Astro into `./dist/` and deployed via Wrangler (`wrangler.jsonc`). To deploy: run `npm run build`, then `npx wrangler deploy` (or connect the repo to Cloudflare Pages and use build command `npm run build` and deploy command `npx wrangler deploy` with output directory `dist`).
+
 ## Project structure
 
 - `src/pages/` – Home, FAQ, Privacy

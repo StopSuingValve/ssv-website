@@ -8,6 +8,11 @@ const filterOptions = [
 	{ value: '', label: 'All', flag: '' },
 	...regions.map((r) => ({ value: r, label: r, flag: getRegionFlag(r) })),
 ];
+const typeFilterOptions = [
+	{ value: '', label: 'All' },
+	{ value: 'consumer', label: 'Consumer' },
+	{ value: 'developer', label: 'Developer' },
+];
 ---
 
 <Layout title="Stop Sueing Valve" description="We inform developers and consumers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits.">
@@ -56,11 +61,11 @@ const filterOptions = [
 				Expand a lawsuit below to read what it is, who it affects, and—where applicable—how to remove yourself from default-opt-in classes.
 			</p>
 			<!-- Country filter -->
-			<div class="flex flex-wrap justify-center gap-2 mb-6 text-left" role="group" aria-label="Filter by country">
+			<div class="flex flex-wrap justify-center gap-2 mb-3 text-left" role="group" aria-label="Filter by country">
 				{filterOptions.map((opt) => (
 					<button
 						type="button"
-						class="lawsuit-filter-btn px-4 py-2 rounded-lg text-sm font-medium border-2 transition-colors"
+						class="lawsuit-filter-btn lawsuit-filter-region px-4 py-2 rounded-lg text-sm font-medium border-2 transition-colors"
 						data-filter={opt.value}
 						class:list={[
 							opt.value === ''
@@ -73,17 +78,38 @@ const filterOptions = [
 					</button>
 				))}
 			</div>
+			<!-- Type filter (consumer / developer) -->
+			<div class="flex flex-wrap justify-center gap-2 mb-6 text-left" role="group" aria-label="Filter by type">
+				{typeFilterOptions.map((opt) => (
+					<button
+						type="button"
+						class="lawsuit-filter-btn lawsuit-filter-type px-4 py-2 rounded-lg text-sm font-medium border-2 transition-colors"
+						data-filter={opt.value}
+						class:list={[
+							opt.value === ''
+								? 'border-stone-700 bg-stone-700 text-white'
+								: 'border-stone-200 text-stone-700 hover:bg-stone-100',
+						]}
+					>
+						{opt.label}
+					</button>
+				))}
+			</div>
 			<div class="space-y-4 text-left" id="lawsuits-list">
 				{lawsuits.map((lawsuit) => (
 					<div
 						class="scroll-mt-24 lawsuit-item transition-opacity duration-200"
 						id={`lawsuit-${lawsuit.id}`}
 						data-region={lawsuit.region}
+						data-audience={lawsuit.audience}
 					>
 						<LawsuitDropdown lawsuit={lawsuit} />
 					</div>
 				))}
 			</div>
+			<p id="no-results-message" class="text-center text-stone-600 py-6 hidden" role="status">
+				No lawsuits match the selected filters. Try changing the country or type above.
+			</p>
 		</section>
 
 		<!-- Disclaimers: funding, about, voluntary merged and centered -->
@@ -94,29 +120,35 @@ const filterOptions = [
 				</p>
 			</div>
 		</section>
-
-		<!-- Our stance: centered -->
-		<section id="our-stance" class="mt-8 text-center text-stone-600 leading-relaxed max-w-2xl mx-auto">
-			<h2 class="text-lg font-semibold text-stone-900 mb-2">Our stance</h2>
-			<p>
-				We do not support harassment of any company or person. This site only states ways to remove yourself from "everyone is opted-in by default" lawsuits. We do not encourage or endorse targeting individuals or companies.
-			</p>
-		</section>
 	</article>
 
 	<script>
 		(function () {
 			const list = document.getElementById('lawsuits-list');
-			const buttons = document.querySelectorAll('.lawsuit-filter-btn');
+			const regionButtons = document.querySelectorAll('.lawsuit-filter-region');
+			const typeButtons = document.querySelectorAll('.lawsuit-filter-type');
 			const items = document.querySelectorAll('.lawsuit-item');
-			if (!list || !buttons.length || !items.length) return;
+			if (!list || !regionButtons.length || !typeButtons.length || !items.length) return;
 
-			function setActiveButton(filterValue) {
-				buttons.forEach((btn) => {
+			let regionFilter = '';
+			let typeFilter = '';
+
+			function setActiveButtons() {
+				regionButtons.forEach((btn) => {
 					const value = btn.dataset.filter ?? '';
-					btn.setAttribute('aria-pressed', value === filterValue ? 'true' : 'false');
+					btn.setAttribute('aria-pressed', value === regionFilter ? 'true' : 'false');
 					btn.classList.remove('border-stone-700', 'bg-stone-700', 'text-white', 'border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
-					if (value === filterValue) {
+					if (value === regionFilter) {
+						btn.classList.add('border-stone-700', 'bg-stone-700', 'text-white');
+					} else {
+						btn.classList.add('border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
+					}
+				});
+				typeButtons.forEach((btn) => {
+					const value = btn.dataset.filter ?? '';
+					btn.setAttribute('aria-pressed', value === typeFilter ? 'true' : 'false');
+					btn.classList.remove('border-stone-700', 'bg-stone-700', 'text-white', 'border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
+					if (value === typeFilter) {
 						btn.classList.add('border-stone-700', 'bg-stone-700', 'text-white');
 					} else {
 						btn.classList.add('border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
@@ -124,22 +156,41 @@ const filterOptions = [
 				});
 			}
 
-			function filterItems(filterValue) {
-				setActiveButton(filterValue);
+			function filterItems() {
+				setActiveButtons();
+				let visibleCount = 0;
 				items.forEach((el) => {
 					const region = el.dataset.region ?? '';
-					const show = filterValue === '' || region === filterValue;
+					const audience = el.dataset.audience ?? '';
+					const regionMatch = regionFilter === '' || region === regionFilter;
+					const typeMatch =
+						typeFilter === '' ||
+						audience === typeFilter ||
+						(audience === 'both' && (typeFilter === 'consumer' || typeFilter === 'developer'));
+					const show = regionMatch && typeMatch;
 					el.hidden = !show;
+					if (show) visibleCount++;
 				});
+				const noResults = document.getElementById('no-results-message');
+				if (noResults) {
+					noResults.classList.toggle('hidden', visibleCount > 0);
+				}
 			}
 
-			buttons.forEach((btn) => {
+			regionButtons.forEach((btn) => {
 				btn.addEventListener('click', () => {
-					filterItems(btn.dataset.filter ?? '');
+					regionFilter = btn.dataset.filter ?? '';
+					filterItems();
+				});
+			});
+			typeButtons.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					typeFilter = btn.dataset.filter ?? '';
+					filterItems();
 				});
 			});
 
-			setActiveButton('');
+			filterItems();
 		})();
 	</script>
 </Layout>
