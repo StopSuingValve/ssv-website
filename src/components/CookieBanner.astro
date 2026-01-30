@@ -1,0 +1,40 @@
+---
+// Minimal cookie banner: we only use strictly necessary means.
+// Uses a simple localStorage check so we don't need a backend.
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-stone-800 text-stone-200 px-4 py-3 text-sm z-50 hidden">
+	<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
+		<p>
+			We use only strictly necessary means to run this site (e.g. to remember that you have seen this message). We do not track you for advertising or sell your data. See our <a href="/privacy" class="underline hover:no-underline">Privacy Policy</a>.
+		</p>
+		<button
+			type="button"
+			id="cookie-acknowledge"
+			class="shrink-0 px-4 py-2 bg-stone-600 hover:bg-stone-500 text-white text-sm font-medium rounded transition-colors"
+		>
+			Acknowledge
+		</button>
+	</div>
+</div>
+
+<script>
+	(function () {
+		if (typeof window === 'undefined') return;
+		const key = 'ssv-cookie-ack';
+		const banner = document.getElementById('cookie-banner');
+		const btn = document.getElementById('cookie-acknowledge');
+		if (!banner || !btn) return;
+		try {
+			if (!localStorage.getItem(key)) {
+				banner.classList.remove('hidden');
+			}
+			btn.addEventListener('click', () => {
+				try {
+					localStorage.setItem(key, '1');
+					banner.classList.add('hidden');
+				} catch (_) {}
+			});
+		} catch (_) {}
+	})();
+</script>

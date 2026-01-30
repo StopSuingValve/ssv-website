@@ -1,0 +1,33 @@
+---
+const footerLinks = [
+	{ href: '/', label: 'Home' },
+	{ href: '/faq', label: 'FAQ' },
+	{ href: '/privacy', label: 'Privacy Policy' },
+];
+---
+
+<footer class="border-t border-stone-200 bg-stone-100/80 mt-auto">
+	<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 space-y-6 text-sm text-stone-600 text-center">
+		<nav class="flex flex-wrap gap-x-6 gap-y-1 justify-center" aria-label="Footer navigation">
+			{footerLinks.map((link) => (
+				<a href={link.href} class="hover:text-stone-900 transition-colors">
+					{link.label}
+				</a>
+			))}
+		</nav>
+		<div class="space-y-3 max-w-2xl mx-auto">
+			<p>
+				<strong class="text-stone-800">Contact:</strong>
+				<a href="mailto:contact@stopsueingvalve.com" class="text-stone-800 underline hover:no-underline">
+					contact@stopsueingvalve.com
+				</a>
+			</p>
+			<p>
+				This site and logo were created with AI. We are not seeking funding; we welcome voluntary support—contact us at the address above.
+			</p>
+			<p>
+				We do not support harassment of any company or person. This site only provides information on how to remove yourself from “everyone is opted-in by default” lawsuits (e.g. official opt-out links and deadlines). We do not encourage or endorse targeting individuals or companies.
+			</p>
+		</div>
+	</div>
+</footer>

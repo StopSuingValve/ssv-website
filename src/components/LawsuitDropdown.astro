@@ -1,0 +1,106 @@
+---
+import type { Lawsuit } from '../data/lawsuits';
+import { getRegionFlag, getRegionLabel } from '../data/lawsuits';
+import StatusBar from './StatusBar.astro';
+
+interface Props {
+	lawsuit: Lawsuit;
+}
+
+const { lawsuit } = Astro.props;
+const regionFlag = getRegionFlag(lawsuit.region);
+const regionLabel = getRegionLabel(lawsuit.region);
+
+const audienceLabel =
+	lawsuit.audience === 'consumer'
+		? 'Consumer'
+		: lawsuit.audience === 'developer'
+			? 'Developer'
+			: 'Consumer & Developer';
+---
+
+<details
+	class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden"
+>
+	<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
+		<span class="flex-1 text-left">
+			<span class="font-semibold text-stone-900">{lawsuit.name}</span>
+			<span class="text-stone-500 font-normal ml-1.5">({lawsuit.region} {regionFlag})</span>
+		</span>
+		<span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-stone-200 text-stone-700">
+			{audienceLabel}
+		</span>
+		<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+				<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+			</svg>
+		</span>
+	</summary>
+	<div class="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 border-t border-stone-100">
+		<p class="text-sm text-stone-600 mb-4">
+			<strong class="text-stone-800">Applies to:</strong> {regionLabel} {regionFlag}
+		</p>
+		<p class="text-sm text-stone-500 mb-4">{lawsuit.shortDescription}</p>
+		<div class="text-stone-600 leading-relaxed space-y-4">
+			{lawsuit.content.map((paragraph) => (
+				<p>{paragraph}</p>
+			))}
+		</div>
+		{lawsuit.statusMilestones && lawsuit.statusMilestones.length > 0 && (
+			<StatusBar milestones={lawsuit.statusMilestones} />
+		)}
+		{lawsuit.whatYouCanDo && lawsuit.whatYouCanDo.length > 0 && (
+			<div class="mt-4 pt-4 border-t border-stone-100">
+				<h4 class="text-sm font-semibold text-stone-800 mb-2">What you can do</h4>
+				<ul class="list-disc list-inside space-y-1.5 text-sm text-stone-600">
+					{lawsuit.whatYouCanDo.map((item) => {
+						const text = typeof item === 'string' ? item : item.text;
+						const href = typeof item === 'string' ? undefined : item.href;
+						return (
+							<li>
+								{href ? (
+									<a href={href} class="text-stone-800 font-medium underline hover:no-underline">{text}</a>
+								) : (
+									text
+								)}
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+		)}
+		{(lawsuit.optOutLink || lawsuit.documentsLink || lawsuit.deadline) && (
+			<div class="mt-4 pt-4 border-t border-stone-100 space-y-2">
+				{lawsuit.deadline && (
+					<p class="text-sm">
+						<strong class="text-stone-800">Key deadline:</strong> {lawsuit.deadline}
+					</p>
+				)}
+				{lawsuit.optOutLink && (
+					<p class="text-sm">
+						<a
+							href={lawsuit.optOutLink}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-stone-800 font-medium underline hover:no-underline"
+						>
+							Official notice and opt-out instructions →
+						</a>
+					</p>
+				)}
+				{lawsuit.documentsLink && (
+					<p class="text-sm">
+						<a
+							href={lawsuit.documentsLink}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-stone-800 font-medium underline hover:no-underline"
+						>
+							{lawsuit.documentsLinkLabel ?? 'Important documents (court papers, notices)'} →
+						</a>
+					</p>
+				)}
+			</div>
+		)}
+	</div>
+</details>

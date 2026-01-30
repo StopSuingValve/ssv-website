@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const consumerFaqs = [
+	{
+		q: 'What is the Steam You Owe Us claim?',
+		a: 'Steam You Owe Us is a UK collective claim filed at the Competition Appeal Tribunal against Valve in relation to its Steam platform. The claim argues that UK PC gamers may have overpaid for games or in-game content due to Valve’s practices (e.g. commission and alleged anti-competitive behaviour). If successful, the claim could lead to compensation for eligible UK consumers who bought PC games or add-on content in the UK from a certain date (e.g. from June 2018). We oppose the framing of this claim and believe it misuses consumer/competition law; this site explains why and informs you so you can judge for yourself.',
+	},
+	{
+		q: 'Am I really owed money?',
+		a: 'The claim asserts that UK gamers were “overcharged,” but that is a legal argument, not a fact. You bought games at the prices displayed. Whether that amounts to “overcharging” in law is contested. We are not telling you to opt in or out of any claim; we are providing information so you can understand the arguments and make your own choice.',
+	},
+	{
+		q: 'Why oppose the UK claim?',
+		a: 'We believe the claim stretches competition and consumer law by treating standard store commission as “overcharging” and that large payouts or liability could affect Steam’s terms, regional pricing, or game availability. We also think it is important that consumers and developers understand both sides. We do not support harassment of anyone; we only provide information and, where relevant, opt-out options.',
+	},
+	{
+		q: 'What about the 30% commission?',
+		a: 'Steam charges a commission (often cited as up to 30%) for games sold on its platform. The claim frames this as excessive or anti-competitive. Many digital storefronts charge similar or higher fees; whether that is legally “overcharging” is disputed. We believe the commission is a normal part of running a store and that treating it as automatic grounds for compensation misuses the law.',
+	},
+	{
+		q: 'Won’t compensation help gamers?',
+		a: 'The claim promises potential compensation (e.g. estimates of £22–£44 per person in the UK). Even if that were paid, the long-term effects could include changes to Steam’s business model, regional pricing, or developer revenue share—which could hurt the ecosystem. We think the trade-offs are worth understanding before supporting the claim.',
+	},
+	{
+		q: 'Is there an opt-out for the UK claim?',
+		a: 'The UK Steam You Owe Us claim is an “opt-in” collective claim: you typically have to sign up to be part of it. So you are not automatically included. We only provide information; we do not tell you to opt in or out. Check the claimant’s official site and the Competition Appeal Tribunal for current details.',
+	},
+];
+
+const developerFaqs = [
+	{
+		q: 'What is the US Valve Antitrust class action?',
+		a: 'In re Valve Antitrust Litigation is a class action in the US District Court for the Western District of Washington. It targets people or entities who, directly or through an agent, paid a commission to Valve in connection with the sale or use of a game on the Steam platform between January 28, 2017 and November 25, 2024. If you are in the class and do nothing, you stay in the class. If you do not want to be part of it, you must opt out by the deadline (e.g. September 2, 2025). The official court-authorised site is valvepublisherclassaction.com.',
+	},
+	{
+		q: 'How do I opt out of the US class action?',
+		a: 'Follow the instructions on the court-authorised website: valvepublisherclassaction.com. Opt-out deadlines apply (e.g. September 2, 2025). We only link to that information; we do not provide legal advice.',
+	},
+	{
+		q: 'How do these claims affect my revenue or Steam’s terms?',
+		a: 'If Valve faces large liability or payouts, it could respond by changing store terms, revenue share, or regional pricing. Indie and small publishers often have the most to lose from storefront uncertainty. We believe the US and UK claims both mischaracterise Steam’s commission and that succeeding could harm the ecosystem.',
+	},
+	{
+		q: 'Isn’t Steam’s commission anti-competitive?',
+		a: 'The claims argue that Steam’s commission is excessive or anti-competitive. That view is contested. Many digital storefronts charge similar or higher fees. We believe treating standard store commission as automatically illegal stretches competition law and can hurt developers and consumers in the long run.',
+	},
+];
+---
+
+<Layout title="FAQ – Stop Sueing Valve" description="Frequently asked questions for consumers and developers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits.">
+	<article class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+		<header class="mb-12 text-center">
+			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4">
+				FAQ
+			</h1>
+			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto">
+				Answers for consumers and developers about the UK and US claims against Valve and how to remove yourself from “opt-in by default” lawsuits where applicable.
+			</p>
+		</header>
+
+		<section class="mb-14 text-center" id="for-consumers">
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6">For consumers</h2>
+			<div class="space-y-3 max-w-3xl mx-auto text-left">
+				{consumerFaqs.map((faq) => (
+					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
+							<span class="flex-1 text-left text-sm font-semibold text-stone-800">{faq.q}</span>
+							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+									<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+								</svg>
+							</span>
+						</summary>
+						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100">
+							<p class="text-stone-600 leading-relaxed text-sm">{faq.a}</p>
+						</div>
+					</details>
+				))}
+			</div>
+		</section>
+
+		<section class="mb-14 text-center" id="for-developers">
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6">For developers</h2>
+			<div class="space-y-3 max-w-3xl mx-auto text-left">
+				{developerFaqs.map((faq) => (
+					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
+							<span class="flex-1 text-left text-sm font-semibold text-stone-800">{faq.q}</span>
+							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+									<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+								</svg>
+							</span>
+						</summary>
+						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100">
+							<p class="text-stone-600 leading-relaxed text-sm">{faq.a}</p>
+						</div>
+					</details>
+				))}
+			</div>
+		</section>
+
+		<p class="text-sm text-stone-500 text-center max-w-2xl mx-auto">
+			We do not provide legal advice. For official opt-out procedures and deadlines, see the court-authorised sites (e.g. <a href="https://www.valvepublisherclassaction.com/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline">valvepublisherclassaction.com</a> for the US class action). Contact us: <a href="mailto:contact@stopsueingvalve.com" class="text-stone-700 underline hover:no-underline">contact@stopsueingvalve.com</a>.
+		</p>
+	</article>
+</Layout>
