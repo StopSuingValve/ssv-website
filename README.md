@@ -1,4 +1,4 @@
-# Stop Sueing Valve
+# Stop Suing Valve
 
 A static advocacy website that informs developers and consumers about collective actions and lawsuits against Valve (e.g. UK Steam You Owe Us, US Valve Antitrust class action). The site explains the claims, why we oppose them, and—where applicable—how to remove yourself from default-opt-in lawsuits. It does not support harassment of any company or person.
 
@@ -24,4 +24,4 @@ The website is hosted on **Cloudflare Workers/Pages**. Static output is built wi
 - `src/components/` – Header, Footer, CookieBanner
 - `public/images/` – Logo (SSV)
 
-Contact: contact@stopsueingvalve.com
+Contact: contact@stopsuingvalve.com
