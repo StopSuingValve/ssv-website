@@ -172,12 +172,24 @@ export const lawsuits: Lawsuit[] = [
 		shortDescription: 'US class action for consumers and publishers who paid Valve commission; publisher opt-out deadline passed.',
 		content: [
 			"This class action is in the US District Court for the Western District of Washington (Case No. 2:21-cv-00563). It targeted people or entities who paid commission to Valve in connection with the sale or use of a game on the Steam platform between January 28, 2017 and November 25, 2024. The opt-out deadline for the publisher/developer class was September 2, 2025; that deadline has passed.",
-			"A similar suit on behalf of game publishers and developers has already passed a motion to dismiss and been certified as a class action. Separately, a consumer class (consumers who purchased PC games via Steam) is now proceeding: consumers were only recently able to pursue their suit after Valve amended the arbitration clause in its user agreement. On May 2, 2025, the Court appointed Cohen Milstein sole Interim Lead Class Counsel for the consumer class.",
+			"A similar suit on behalf of game publishers and developers has already passed a motion to dismiss and been certified as a class action. Separately, a consumer class (consumers who purchased PC games via Steam) is now proceeding: consumers were only recently able to pursue their suit after Valve amended the arbitration clause in its user agreement. On May 2, 2025, the Court appointed Cohen Milstein sole Interim Lead Class Counsel for the consumer class. On August 28, 2025, the Court granted an unopposed voluntary dismissal without prejudice for Susann Davis, Hope Marchionda, and Everett Stephens; they are no longer class representatives for the putative consumer class but may remain in the action as absent class members.",
 			"We do not tell you whether to opt in or out; we only point you to the official information. Both the UK and US claims treat Steam's commission as \"anti-competitive\" or \"excessive\"—that framing is contested. For official notices and documents, see the links below.",
 		],
 		optOutLink: 'https://www.valvepublisherclassaction.com/',
 		documentsLink: 'https://www.valvepublisherclassaction.com/important-documents',
 		documentLinks: [
+			{
+				label: 'CourtListener docket (RECAP; full case)',
+				href: 'https://www.courtlistener.com/docket/59859024/in-re-valve-antitrust-litigation/',
+			},
+			{
+				label: 'Order: voluntary dismissal of three consumer named plaintiffs (28 August 2025) (Dkt. 533) (PDF)',
+				href: 'https://storage.courtlistener.com/recap/gov.uscourts.wawd.298754/gov.uscourts.wawd.298754.533.0.pdf',
+			},
+			{
+				label: 'Order on motion to seal summary judgment opposition filings (in part; 31 March 2026) (Dkt. 591) (PDF)',
+				href: 'https://storage.courtlistener.com/recap/gov.uscourts.wawd.298754/gov.uscourts.wawd.298754.591.0.pdf',
+			},
 			{
 				label: 'Class action complaint (27 April 2021) (PDF)',
 				href: 'https://angeion-public.s3.amazonaws.com/www.examplesettlementwebsite.com/docs/1%20-%20Complaint.pdf',
@@ -195,7 +207,7 @@ export const lawsuits: Lawsuit[] = [
 				href: 'https://angeion-public.s3.amazonaws.com/www.examplesettlementwebsite.com/docs/440-%20Valve_Order%20Approving%20Notice%20of%20Class%20Certification.pdf',
 			},
 			{
-				label: 'Order granting class certification (25 November 2024) (PDF)',
+				label: 'Order granting class certification (26 November 2024) (PDF)',
 				href: 'https://angeion-public.s3.amazonaws.com/www.examplesettlementwebsite.com/docs/Dist.W.D.Wash._2-21-cv-00563_391.pdf',
 			},
 			{
@@ -209,11 +221,16 @@ export const lawsuits: Lawsuit[] = [
 			{ label: 'Complaint filed (Wolfire v. Valve)', date: '27 April 2021', status: 'completed' },
 			{ label: 'First motion to dismiss (granted in part)', date: 'November 2021', status: 'completed' },
 			{ label: 'Second motion to dismiss (second amended complaint)', date: '6 May 2022', status: 'completed' },
-			{ label: 'Class certified (publisher/developer class)', date: '25 November 2024', status: 'completed' },
+			{ label: 'Class certified (publisher/developer class)', date: '26 November 2024', status: 'completed' },
 			{ label: 'Appeal petition denied (Ninth Circuit)', date: '23 January 2025', status: 'completed' },
 			{ label: 'Consumer class: Interim Lead Counsel appointed', date: '2 May 2025', status: 'completed' },
 			{ label: 'Opt-out deadline (publisher class)', date: '2 September 2025', status: 'completed' },
-			{ label: 'Ongoing proceedings (trial / settlement)', status: 'current' },
+			{
+				label: 'Consumer named plaintiffs: voluntary dismissal as class representatives (without prejudice)',
+				date: '28 August 2025',
+				status: 'completed',
+			},
+			{ label: 'Motion practice (sealing, dispositive motions; some court orders sealed)', date: '2025–2026', status: 'current' },
 		],
 		whatYouCanDo: [
 			'Review the official class action site and Important Documents (links below) for current status and papers.',

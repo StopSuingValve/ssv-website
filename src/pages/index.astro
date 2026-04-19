@@ -207,7 +207,28 @@ const typeFilterOptions = [
 				});
 			});
 
+			function openLawsuitFromHash() {
+				const id = decodeURIComponent(location.hash.slice(1));
+				if (!id || !id.startsWith('lawsuit-')) return;
+				const el = document.getElementById(id);
+				if (!el || !el.classList.contains('lawsuit-item')) return;
+
+				regionFilter = '';
+				typeFilter = '';
+				filterItems();
+
+				const details = el.querySelector('details');
+				if (details) {
+					details.open = true;
+					requestAnimationFrame(() => {
+						el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					});
+				}
+			}
+
 			filterItems();
+			openLawsuitFromHash();
+			window.addEventListener('hashchange', openLawsuitFromHash);
 		})();
 	</script>
 
