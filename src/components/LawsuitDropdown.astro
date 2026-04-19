@@ -28,28 +28,28 @@ const optFormsHeading =
 ---
 
 <details
-	class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden"
+	class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden dark:bg-stone-900 dark:border-stone-700 dark:shadow-none"
 >
-	<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
+	<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 dark:hover:bg-stone-800/50 dark:focus-visible:outline-stone-300">
 		<span class="flex-1 text-left">
-			<span class="font-semibold text-stone-900">{lawsuit.name}</span>
-			<span class="text-stone-500 font-normal ml-1.5">({lawsuit.region} {regionFlag})</span>
+			<span class="font-semibold text-stone-900 dark:text-stone-100">{lawsuit.name}</span>
+			<span class="text-stone-500 font-normal ml-1.5 dark:text-stone-400">({lawsuit.region} {regionFlag})</span>
 		</span>
-		<span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-stone-200 text-stone-700">
+		<span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-stone-200 text-stone-700 dark:bg-stone-700 dark:text-stone-200">
 			{audienceLabel}
 		</span>
-		<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+		<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform dark:text-stone-500" aria-hidden="true">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
 				<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 			</svg>
 		</span>
 	</summary>
-	<div class="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 border-t border-stone-100">
-		<p class="text-sm text-stone-600 mb-4">
-			<strong class="text-stone-800">Applies to:</strong> {regionLabel} {regionFlag}
+	<div class="px-5 sm:px-6 pb-5 sm:pb-6 pt-0 border-t border-stone-100 dark:border-stone-800">
+		<p class="text-sm text-stone-600 mb-4 dark:text-stone-400">
+			<strong class="text-stone-800 dark:text-stone-200">Applies to:</strong> {regionLabel} {regionFlag}
 		</p>
-		<p class="text-sm text-stone-500 mb-4">{lawsuit.shortDescription}</p>
-		<div class="text-stone-600 leading-relaxed space-y-4">
+		<p class="text-sm text-stone-500 mb-4 dark:text-stone-400">{lawsuit.shortDescription}</p>
+		<div class="text-stone-600 leading-relaxed space-y-4 dark:text-stone-300">
 			{lawsuit.content.map((paragraph) => (
 				<p>{paragraph}</p>
 			))}
@@ -59,9 +59,9 @@ const optFormsHeading =
 			<StatusBar milestones={lawsuit.statusMilestones} />
 		)}
 		{(lawsuit.optOutLink || lawsuit.optInLink) && (
-			<div class="mt-4 pt-4 border-t border-stone-100">
-				<h4 class="text-sm font-semibold text-stone-800 mb-1">{optFormsHeading}</h4>
-				<p class="text-xs text-stone-500 mb-3 leading-relaxed">
+			<div class="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+				<h4 class="text-sm font-semibold text-stone-800 mb-1 dark:text-stone-200">{optFormsHeading}</h4>
+				<p class="text-xs text-stone-500 mb-3 leading-relaxed dark:text-stone-400">
 					{lawsuit.optOutLink && lawsuit.optInLink
 						? 'Claimant forms open in a new tab. Use whichever applies after reading the notice and your circumstances (for example, domicile). We are not recommending one option over the other.'
 						: 'Claimant site opens in a new tab. Check the official notice for whether this applies to you and for deadlines.'}
@@ -78,7 +78,7 @@ const optFormsHeading =
 							target="_blank"
 							rel="noopener noreferrer"
 							class:list={[
-								'inline-flex flex-1 min-h-[48px] items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-stone-800 bg-white text-stone-800 text-sm font-semibold hover:bg-stone-800 hover:text-white transition-colors text-center',
+								'inline-flex flex-1 min-h-[48px] items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-stone-800 bg-white text-stone-800 text-sm font-semibold hover:bg-stone-800 hover:text-white transition-colors text-center dark:border-stone-300 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-300 dark:hover:text-stone-900',
 							]}
 						>
 							Opt out
@@ -94,7 +94,7 @@ const optFormsHeading =
 							target="_blank"
 							rel="noopener noreferrer"
 							class:list={[
-								'inline-flex flex-1 min-h-[48px] items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-stone-800 bg-white text-stone-800 text-sm font-semibold hover:bg-stone-800 hover:text-white transition-colors text-center',
+								'inline-flex flex-1 min-h-[48px] items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-stone-800 bg-white text-stone-800 text-sm font-semibold hover:bg-stone-800 hover:text-white transition-colors text-center dark:border-stone-300 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-300 dark:hover:text-stone-900',
 							]}
 						>
 							Opt in
@@ -108,16 +108,16 @@ const optFormsHeading =
 			</div>
 		)}
 		{lawsuit.whatYouCanDo && lawsuit.whatYouCanDo.length > 0 && (
-			<div class="mt-4 pt-4 border-t border-stone-100">
-				<h4 class="text-sm font-semibold text-stone-800 mb-2">What you can do</h4>
-				<ul class="list-disc list-inside space-y-1.5 text-sm text-stone-600">
+			<div class="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+				<h4 class="text-sm font-semibold text-stone-800 mb-2 dark:text-stone-200">What you can do</h4>
+				<ul class="list-disc list-inside space-y-1.5 text-sm text-stone-600 dark:text-stone-400">
 					{lawsuit.whatYouCanDo.map((item) => {
 						const text = typeof item === 'string' ? item : item.text;
 						const href = typeof item === 'string' ? undefined : item.href;
 						return (
 							<li>
 								{href ? (
-									<a href={href} class="text-stone-800 font-medium underline hover:no-underline">{text}</a>
+									<a href={href} class="text-stone-800 font-medium underline hover:no-underline dark:text-stone-200">{text}</a>
 								) : (
 									text
 								)}
@@ -128,11 +128,11 @@ const optFormsHeading =
 			</div>
 		)}
 		{(lawsuit.documentsLink || lawsuit.deadline || (lawsuit.documentLinks && lawsuit.documentLinks.length > 0)) && (
-			<div class="mt-4 pt-4 border-t border-stone-100">
-				<h4 class="text-sm font-semibold text-stone-800 mb-3">Resources</h4>
+			<div class="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
+				<h4 class="text-sm font-semibold text-stone-800 mb-3 dark:text-stone-200">Resources</h4>
 				{lawsuit.deadline && (
-					<p class="text-sm text-stone-600 mb-3">
-						<strong class="text-stone-800">Key deadline:</strong> {lawsuit.deadline}
+					<p class="text-sm text-stone-600 mb-3 dark:text-stone-400">
+						<strong class="text-stone-800 dark:text-stone-200">Key deadline:</strong> {lawsuit.deadline}
 					</p>
 				)}
 				<div class="flex flex-wrap gap-2">
@@ -141,7 +141,7 @@ const optFormsHeading =
 							href={lawsuit.documentsLink}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-stone-800 text-white text-sm font-medium hover:bg-stone-700 transition-colors"
+							class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-stone-800 text-white text-sm font-medium hover:bg-stone-700 transition-colors dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
 						>
 							{lawsuit.documentsLinkLabel ?? 'Important documents (court papers, notices)'}
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0" aria-hidden="true">
@@ -155,9 +155,9 @@ const optFormsHeading =
 							href={doc.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-stone-200 text-stone-800 text-sm font-medium hover:bg-stone-50 hover:border-stone-300 transition-colors"
+							class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-stone-200 text-stone-800 text-sm font-medium hover:bg-stone-50 hover:border-stone-300 transition-colors dark:border-stone-600 dark:text-stone-200 dark:hover:bg-stone-800 dark:hover:border-stone-500"
 						>
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0 text-stone-500" aria-hidden="true">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0 text-stone-500 dark:text-stone-400" aria-hidden="true">
 								<path fill-rule="evenodd" d="M4.5 2A2.5 2.5 0 0 0 2 4.5v11A2.5 2.5 0 0 0 4.5 18h11a2.5 2.5 0 0 0 2.5-2.5V7.621a2.5 2.5 0 0 0-.732-1.768l-4.5-4.5A2.5 2.5 0 0 0 7.621 2H4.5Zm2.25 8.5a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5Zm0 3a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5Z" clip-rule="evenodd" />
 							</svg>
 							{doc.label}
@@ -168,10 +168,10 @@ const optFormsHeading =
 		)}
 
 		<!-- Stay Updated button -->
-		<div class="mt-4 pt-4 border-t border-stone-100">
+		<div class="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
 			<button
 				type="button"
-				class="stay-updated-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-stone-800 text-stone-800 text-sm font-medium hover:bg-stone-800 hover:text-white transition-colors"
+				class="stay-updated-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-stone-800 text-stone-800 text-sm font-medium hover:bg-stone-800 hover:text-white transition-colors dark:border-stone-300 dark:text-stone-100 dark:hover:bg-stone-300 dark:hover:text-stone-900"
 				data-region={lawsuit.region}
 				data-audience={lawsuit.audience}
 				onclick={`openNewsletterModal('${lawsuit.region}', '${lawsuit.audience}')`}

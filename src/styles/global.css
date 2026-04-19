@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
 	html {
 		scroll-behavior: smooth;
+		color-scheme: light dark;
+	}
+	html.dark {
+		color-scheme: dark;
 	}
 	body {
 		@apply text-base leading-relaxed;
@@ -22,5 +28,12 @@
 		--altcha-color-border: theme('colors.stone.300');
 		--altcha-color-border-focus: theme('colors.stone.500');
 		--altcha-border-radius: theme('borderRadius.lg');
+	}
+
+	html.dark altcha-widget {
+		--altcha-color-base: theme('colors.stone.900');
+		--altcha-color-text: theme('colors.stone.200');
+		--altcha-color-border: theme('colors.stone.600');
+		--altcha-color-border-focus: theme('colors.stone.400');
 	}
 }

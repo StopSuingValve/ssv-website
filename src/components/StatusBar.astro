@@ -10,8 +10,8 @@ const { milestones } = Astro.props;
 const connectorOffset = '14px';
 ---
 
-<div class="status-bar mt-4 pt-4 border-t border-stone-100" role="list" aria-label="Case status">
-	<h4 class="text-sm font-semibold text-stone-800 mb-3">Case status</h4>
+<div class="status-bar mt-4 pt-4 border-t border-stone-100 dark:border-stone-800" role="list" aria-label="Case status">
+	<h4 class="text-sm font-semibold text-stone-800 mb-3 dark:text-stone-200">Case status</h4>
 	<div class="flex flex-wrap items-start gap-y-4">
 		{milestones.map((m, i) => (
 			<div class="flex items-start gap-x-1 sm:gap-x-2 shrink-0" role="listitem">
@@ -19,9 +19,10 @@ const connectorOffset = '14px';
 				<div
 					class="flex shrink-0 items-center justify-center w-8 h-8 rounded-full border-2 text-sm font-medium transition-colors"
 					class:list={[
-						m.status === 'completed' && 'bg-stone-700 border-stone-700 text-white',
-						m.status === 'current' && 'bg-stone-600 border-stone-600 text-white ring-2 ring-stone-400 ring-offset-2',
-						m.status === 'upcoming' && 'bg-white border-stone-200 text-stone-300',
+						m.status === 'completed' && 'bg-stone-700 border-stone-700 text-white dark:bg-stone-300 dark:border-stone-300 dark:text-stone-900',
+						m.status === 'current' &&
+							'bg-stone-600 border-stone-600 text-white ring-2 ring-stone-400 ring-offset-2 dark:bg-stone-400 dark:border-stone-400 dark:ring-stone-500 dark:ring-offset-stone-900',
+						m.status === 'upcoming' && 'bg-white border-stone-200 text-stone-300 dark:bg-stone-900 dark:border-stone-600 dark:text-stone-500',
 					]}
 					aria-current={m.status === 'current' ? 'step' : undefined}
 				>
@@ -30,7 +31,7 @@ const connectorOffset = '14px';
 							<path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
 						</svg>
 					) : m.status === 'current' ? (
-						<span class="w-2 h-2 rounded-full bg-white" aria-hidden="true" />
+						<span class="w-2 h-2 rounded-full bg-white dark:bg-stone-900" aria-hidden="true" />
 					) : (
 						<span class="sr-only">Upcoming</span>
 					)}
@@ -40,15 +41,15 @@ const connectorOffset = '14px';
 					<span
 						class="block text-xs font-medium break-words"
 						class:list={[
-							m.status === 'completed' && 'text-stone-600',
-							m.status === 'current' && 'text-stone-900',
-							m.status === 'upcoming' && 'text-stone-400',
+							m.status === 'completed' && 'text-stone-600 dark:text-stone-400',
+							m.status === 'current' && 'text-stone-900 dark:text-stone-100',
+							m.status === 'upcoming' && 'text-stone-400 dark:text-stone-500',
 						]}
 					>
 						{m.label}
 					</span>
 					{m.date && (
-						<span class="block text-xs text-stone-500 break-words">{m.date}</span>
+						<span class="block text-xs text-stone-500 break-words dark:text-stone-400">{m.date}</span>
 					)}
 				</div>
 				<!-- Connector line: vertically centered between this circle and the next -->
@@ -56,7 +57,7 @@ const connectorOffset = '14px';
 					<div
 						class="block shrink-0 w-4 sm:w-6 h-0.5 rounded flex-shrink-0"
 						style={`margin-top: ${connectorOffset};`}
-						class:list={[m.status === 'completed' ? 'bg-stone-500' : 'bg-stone-200']}
+						class:list={[m.status === 'completed' ? 'bg-stone-500 dark:bg-stone-400' : 'bg-stone-200 dark:bg-stone-700']}
 						aria-hidden="true"
 					/>
 				)}

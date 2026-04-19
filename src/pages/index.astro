@@ -20,25 +20,25 @@ const typeFilterOptions = [
 		<!-- Hero -->
 		<header class="text-center mb-14 sm:mb-20">
 			<div class="flex justify-center mb-6">
-				<img src="/images/logo.png" alt="Stop Suing Valve" class="h-16 sm:h-20 w-auto" width="200" height="80" />
+				<img src="/images/logo.png" alt="Stop Suing Valve" class="h-16 sm:h-20 w-auto dark:drop-shadow-[0_0_1px_rgba(255,255,255,0.35)]" width="200" height="80" />
 			</div>
-			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4">
+			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4 dark:text-stone-100">
 				Stop Suing Valve
 			</h1>
-			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto mb-10">
+			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto mb-10 dark:text-stone-400">
 				We inform developers and consumers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits. Choose your path below.
 			</p>
 			<!-- I'm a consumer / I'm a developer buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
 				<a
 					href="#for-consumers"
-					class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-stone-800 text-white hover:bg-stone-700 transition-colors shadow-md hover:shadow-lg min-h-[56px]"
+					class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-stone-800 text-white hover:bg-stone-700 transition-colors shadow-md hover:shadow-lg min-h-[56px] dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300 dark:shadow-stone-950/30"
 				>
 					I'm a consumer
 				</a>
 				<a
 					href="#for-developers"
-					class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-stone-800 text-stone-800 hover:bg-stone-100 transition-colors min-h-[56px]"
+					class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg border-2 border-stone-800 text-stone-800 hover:bg-stone-100 transition-colors min-h-[56px] dark:border-stone-300 dark:text-stone-100 dark:hover:bg-stone-800"
 				>
 					I'm a developer
 				</a>
@@ -47,7 +47,7 @@ const typeFilterOptions = [
 
 		<!-- Short mission -->
 		<section class="mb-14 max-w-3xl mx-auto text-center">
-			<p class="text-stone-600 leading-relaxed text-base sm:text-lg">
+			<p class="text-stone-600 leading-relaxed text-base sm:text-lg dark:text-stone-400">
 				Stop Suing Valve is a campaign to inform you about lawsuits such as the UK Steam You Owe Us claim and the US Valve Antitrust class action. We believe these suits misuse competition and consumer law and can harm the ecosystem. We do not support harassment of any company or person; we only provide factual information and opt-out options.
 			</p>
 		</section>
@@ -56,8 +56,8 @@ const typeFilterOptions = [
 		<section class="mb-14 text-center" id="lawsuits">
 			<span id="for-consumers" class="block scroll-mt-24" aria-hidden="true" />
 			<span id="for-developers" class="block scroll-mt-24" aria-hidden="true" />
-			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6">Claims & lawsuits</h2>
-			<p class="text-stone-600 leading-relaxed mb-6 max-w-3xl mx-auto">
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6 dark:text-stone-100">Claims & lawsuits</h2>
+			<p class="text-stone-600 leading-relaxed mb-6 max-w-3xl mx-auto dark:text-stone-400">
 				Expand a lawsuit below to read what it is, who it affects, and—where applicable—how to remove yourself from default-opt-in classes.
 			</p>
 			<!-- Country filter -->
@@ -69,8 +69,8 @@ const typeFilterOptions = [
 						data-filter={opt.value}
 						class:list={[
 							opt.value === ''
-								? 'border-stone-700 bg-stone-700 text-white'
-								: 'border-stone-200 text-stone-700 hover:bg-stone-100',
+								? 'border-stone-700 bg-stone-700 text-white dark:border-stone-300 dark:bg-stone-300 dark:text-stone-900'
+								: 'border-stone-200 text-stone-700 hover:bg-stone-100 dark:border-stone-600 dark:text-stone-300 dark:hover:bg-stone-800',
 						]}
 					>
 						{opt.flag && <span class="mr-1.5" aria-hidden="true">{opt.flag}</span>}
@@ -87,8 +87,8 @@ const typeFilterOptions = [
 						data-filter={opt.value}
 						class:list={[
 							opt.value === ''
-								? 'border-stone-700 bg-stone-700 text-white'
-								: 'border-stone-200 text-stone-700 hover:bg-stone-100',
+								? 'border-stone-700 bg-stone-700 text-white dark:border-stone-300 dark:bg-stone-300 dark:text-stone-900'
+								: 'border-stone-200 text-stone-700 hover:bg-stone-100 dark:border-stone-600 dark:text-stone-300 dark:hover:bg-stone-800',
 						]}
 					>
 						{opt.label}
@@ -107,33 +107,33 @@ const typeFilterOptions = [
 					</div>
 				))}
 			</div>
-			<p id="no-results-message" class="text-center text-stone-600 py-6 hidden" role="status">
+			<p id="no-results-message" class="text-center text-stone-600 py-6 hidden dark:text-stone-400" role="status">
 				No lawsuits match the selected filters. Try changing the country or type above.
 			</p>
 		</section>
 
 		<!-- Disclaimers: funding, about, voluntary merged and centered -->
-		<section id="no-funding" class="text-center text-stone-600 leading-relaxed max-w-2xl mx-auto space-y-6">
+		<section id="no-funding" class="text-center text-stone-600 leading-relaxed max-w-2xl mx-auto space-y-6 dark:text-stone-400">
 			<div>
 				<p>
-					<strong class="text-stone-800">We are not seeking funding.</strong> We do not ask for donations or paid sign-ups. Any claims of fundraising in our name are not from us. <strong class="text-stone-800">This site is <a href="https://github.com/StopSuingValve/ssv-website" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">open source</a></strong> and was made with AI. We welcome voluntary contributions—share the site, give feedback, or submit a pull request.
+					<strong class="text-stone-800 dark:text-stone-200">We are not seeking funding.</strong> We do not ask for donations or paid sign-ups. Any claims of fundraising in our name are not from us. <strong class="text-stone-800 dark:text-stone-200">This site is <a href="https://github.com/StopSuingValve/ssv-website" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">open source</a></strong> and was made with AI. We welcome voluntary contributions—share the site, give feedback, or submit a pull request.
 				</p>
 				<p class="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-					<a href="https://discord.gg/R92WaMkeJN" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-stone-800 font-medium hover:text-stone-600 transition-colors">
+					<a href="https://discord.gg/R92WaMkeJN" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-stone-800 font-medium hover:text-stone-600 transition-colors dark:text-stone-200 dark:hover:text-stone-100">
 						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 							<path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
 						</svg>
 						Discord
 					</a>
-					<span class="text-stone-300">·</span>
-					<a href="https://github.com/StopSuingValve/ssv-website" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-stone-800 font-medium hover:text-stone-600 transition-colors">
+					<span class="text-stone-300 dark:text-stone-600">·</span>
+					<a href="https://github.com/StopSuingValve/ssv-website" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-stone-800 font-medium hover:text-stone-600 transition-colors dark:text-stone-200 dark:hover:text-stone-100">
 						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
 							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 						</svg>
 						GitHub
 					</a>
-					<span class="text-stone-300">·</span>
-					<a href="mailto:contact@stopsuingvalve.com" class="text-stone-800 font-medium hover:text-stone-600 transition-colors">contact@stopsuingvalve.com</a>
+					<span class="text-stone-300 dark:text-stone-600">·</span>
+					<a href="mailto:contact@stopsuingvalve.com" class="text-stone-800 font-medium hover:text-stone-600 transition-colors dark:text-stone-200 dark:hover:text-stone-100">contact@stopsuingvalve.com</a>
 				</p>
 			</div>
 		</section>
@@ -150,25 +150,42 @@ const typeFilterOptions = [
 			let regionFilter = '';
 			let typeFilter = '';
 
+			const inactiveFilterClasses = [
+				'border-stone-200',
+				'text-stone-700',
+				'hover:bg-stone-100',
+				'dark:border-stone-600',
+				'dark:text-stone-300',
+				'dark:hover:bg-stone-800',
+			];
+			const activeFilterClasses = [
+				'border-stone-700',
+				'bg-stone-700',
+				'text-white',
+				'dark:border-stone-300',
+				'dark:bg-stone-300',
+				'dark:text-stone-900',
+			];
+
 			function setActiveButtons() {
 				regionButtons.forEach((btn) => {
 					const value = btn.dataset.filter ?? '';
 					btn.setAttribute('aria-pressed', value === regionFilter ? 'true' : 'false');
-					btn.classList.remove('border-stone-700', 'bg-stone-700', 'text-white', 'border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
+					btn.classList.remove(...activeFilterClasses, ...inactiveFilterClasses);
 					if (value === regionFilter) {
-						btn.classList.add('border-stone-700', 'bg-stone-700', 'text-white');
+						btn.classList.add(...activeFilterClasses);
 					} else {
-						btn.classList.add('border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
+						btn.classList.add(...inactiveFilterClasses);
 					}
 				});
 				typeButtons.forEach((btn) => {
 					const value = btn.dataset.filter ?? '';
 					btn.setAttribute('aria-pressed', value === typeFilter ? 'true' : 'false');
-					btn.classList.remove('border-stone-700', 'bg-stone-700', 'text-white', 'border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
+					btn.classList.remove(...activeFilterClasses, ...inactiveFilterClasses);
 					if (value === typeFilter) {
-						btn.classList.add('border-stone-700', 'bg-stone-700', 'text-white');
+						btn.classList.add(...activeFilterClasses);
 					} else {
-						btn.classList.add('border-stone-200', 'text-stone-700', 'hover:bg-stone-100');
+						btn.classList.add(...inactiveFilterClasses);
 					}
 				});
 			}
@@ -234,27 +251,27 @@ const typeFilterOptions = [
 
 	<!-- Newsletter Modal -->
 	<dialog id="newsletter-modal" class="fixed inset-0 z-50 w-full max-w-lg mx-auto my-auto p-0 bg-transparent backdrop:bg-black/50 backdrop:backdrop-blur-sm">
-		<div class="bg-white rounded-xl shadow-xl p-6 sm:p-8 relative">
-			<button type="button" id="newsletter-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 transition-colors" aria-label="Close">
+		<div class="bg-white rounded-xl shadow-xl p-6 sm:p-8 relative dark:bg-stone-900 dark:shadow-stone-950/50">
+			<button type="button" id="newsletter-modal-close" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 transition-colors dark:text-stone-500 dark:hover:text-stone-300" aria-label="Close">
 				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
 				</svg>
 			</button>
 
-			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-2 text-center">Stay Updated</h2>
-			<p class="text-stone-600 text-center mb-6">
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-2 text-center dark:text-stone-100">Stay Updated</h2>
+			<p class="text-stone-600 text-center mb-6 dark:text-stone-400">
 				Subscribe to receive updates about this lawsuit, opt-out deadlines, and news.
 			</p>
 
 			<!-- Success message (hidden by default) -->
 			<div id="newsletter-success" class="hidden text-center py-8">
-				<div class="text-green-600 mb-2">
+				<div class="text-green-600 mb-2 dark:text-green-400">
 					<svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
 					</svg>
 				</div>
-				<h3 class="text-lg font-semibold text-stone-900 mb-1">You're subscribed!</h3>
-				<p class="text-stone-600 text-sm">Please check your email to confirm your subscription.</p>
+				<h3 class="text-lg font-semibold text-stone-900 mb-1 dark:text-stone-100">You're subscribed!</h3>
+				<p class="text-stone-600 text-sm dark:text-stone-400">Please check your email to confirm your subscription.</p>
 			</div>
 
 			<!-- Form -->
@@ -267,7 +284,7 @@ const typeFilterOptions = [
 						id="newsletter-email"
 						required
 						placeholder="Email address *"
-						class="w-full px-4 py-3 border border-stone-300 rounded-lg text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-transparent transition-shadow"
+						class="w-full px-4 py-3 border border-stone-300 rounded-lg text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-transparent transition-shadow dark:border-stone-600 dark:bg-stone-950 dark:text-stone-100 dark:placeholder:text-stone-500 dark:focus:ring-stone-400"
 					/>
 				</div>
 
@@ -278,31 +295,31 @@ const typeFilterOptions = [
 						name="name"
 						id="newsletter-name"
 						placeholder="Name (optional)"
-						class="w-full px-4 py-3 border border-stone-300 rounded-lg text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-transparent transition-shadow"
+						class="w-full px-4 py-3 border border-stone-300 rounded-lg text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:border-transparent transition-shadow dark:border-stone-600 dark:bg-stone-950 dark:text-stone-100 dark:placeholder:text-stone-500 dark:focus:ring-stone-400"
 					/>
 				</div>
 
 				<fieldset class="space-y-2">
-					<legend class="text-sm font-medium text-stone-700 mb-2">Subscribe to:</legend>
+					<legend class="text-sm font-medium text-stone-700 mb-2 dark:text-stone-300">Subscribe to:</legend>
 					<div class="grid sm:grid-cols-2 gap-2">
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer" data-list="consumer">
-							<input type="checkbox" name="l" value="3a77b273-4615-4e1b-9971-403c9b015ad6" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500" />
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="consumer">
+							<input type="checkbox" name="l" value="3a77b273-4615-4e1b-9971-403c9b015ad6" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							Consumer Updates
 						</label>
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer" data-list="developer">
-							<input type="checkbox" name="l" value="ab148fcd-5b2e-4daf-95a0-d55293f43bb6" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500" />
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="developer">
+							<input type="checkbox" name="l" value="ab148fcd-5b2e-4daf-95a0-d55293f43bb6" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							Developer Updates
 						</label>
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer" data-list="us">
-							<input type="checkbox" name="l" value="fce9a0e1-04c9-405c-89d7-a6134d679b80" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500" />
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="us">
+							<input type="checkbox" name="l" value="fce9a0e1-04c9-405c-89d7-a6134d679b80" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							US Lawsuit Updates
 						</label>
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer" data-list="uk">
-							<input type="checkbox" name="l" value="3ca8297e-93ca-4073-914b-64098a2b47ae" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500" />
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="uk">
+							<input type="checkbox" name="l" value="3ca8297e-93ca-4073-914b-64098a2b47ae" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							UK Lawsuit Updates
 						</label>
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer sm:col-span-2" data-list="new">
-							<input type="checkbox" name="l" value="0ba81524-eeef-4a47-9d9a-00d7d4dacdbd" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500" />
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer sm:col-span-2 dark:text-stone-400" data-list="new">
+							<input type="checkbox" name="l" value="0ba81524-eeef-4a47-9d9a-00d7d4dacdbd" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							New Lawsuits
 						</label>
 					</div>
@@ -314,16 +331,16 @@ const typeFilterOptions = [
 				</div>
 
 				<!-- Error message -->
-				<p id="newsletter-error" class="hidden text-red-600 text-sm text-center"></p>
+				<p id="newsletter-error" class="hidden text-red-600 text-sm text-center dark:text-red-400"></p>
 
-				<p class="text-xs text-stone-500 text-center">
+				<p class="text-xs text-stone-500 text-center dark:text-stone-500">
 					By subscribing, you agree to our <a href="/privacy" class="underline hover:no-underline">Privacy Policy</a> and <a href="/terms" class="underline hover:no-underline">Terms of Service</a>.
 				</p>
 
 				<button
 					type="submit"
 					id="newsletter-submit"
-					class="w-full px-6 py-3 bg-stone-800 text-white font-semibold rounded-lg hover:bg-stone-700 transition-colors shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+					class="w-full px-6 py-3 bg-stone-800 text-white font-semibold rounded-lg hover:bg-stone-700 transition-colors shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed dark:bg-stone-200 dark:text-stone-900 dark:hover:bg-stone-300"
 				>
 					Subscribe
 				</button>

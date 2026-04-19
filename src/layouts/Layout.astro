@@ -21,9 +21,32 @@ const { title, description = 'Stop Suing Valve – We inform developers and cons
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="color-scheme" content="light dark" />
+		<script is:inline>
+			(function () {
+				var KEY = 'ssv-theme';
+				function stored() {
+					try {
+						var v = localStorage.getItem(KEY);
+						return v === 'light' || v === 'dark' ? v : null;
+					} catch (_) {
+						return null;
+					}
+				}
+				function resolved() {
+					var s = stored();
+					if (s) return s;
+					try {
+						if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+					} catch (_) {}
+					return 'dark';
+				}
+				document.documentElement.classList.toggle('dark', resolved() === 'dark');
+			})();
+		</script>
 		<title>{title}</title>
 	</head>
-	<body class="min-h-screen flex flex-col bg-stone-50 text-stone-900 antialiased font-sans">
+	<body class="min-h-screen flex flex-col bg-stone-50 text-stone-900 antialiased font-sans dark:bg-stone-950 dark:text-stone-100">
 		<Header />
 		<main class="flex-1">
 			<slot />

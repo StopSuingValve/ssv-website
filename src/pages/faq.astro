@@ -70,29 +70,29 @@ const developerFaqs = [
 <Layout title="FAQ – Stop Suing Valve" description="Frequently asked questions for consumers and developers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits.">
 	<article class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 		<header class="mb-12 text-center">
-			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4">
+			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4 dark:text-stone-100">
 				FAQ
 			</h1>
-			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto">
+			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto dark:text-stone-400">
 				Answers for consumers and developers about the UK and US claims against Valve and how to remove yourself from “opt-in by default” lawsuits where applicable.
 			</p>
 		</header>
 
 		<section class="mb-14 text-center" id="general">
-			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6">General</h2>
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6 dark:text-stone-100">General</h2>
 			<div class="space-y-3 max-w-3xl mx-auto text-left">
 				{generalFaqs.map((faq) => (
-					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
-							<span class="flex-1 text-left text-sm font-semibold text-stone-800">{faq.q}</span>
-							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden dark:bg-stone-900 dark:border-stone-700 dark:shadow-none">
+						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 dark:hover:bg-stone-800/50 dark:focus-visible:outline-stone-300">
+							<span class="flex-1 text-left text-sm font-semibold text-stone-800 dark:text-stone-200">{faq.q}</span>
+							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform dark:text-stone-500" aria-hidden="true">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
 									<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 								</svg>
 							</span>
 						</summary>
-						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100">
-							<p class="text-stone-600 leading-relaxed text-sm">{faq.a}</p>
+						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100 dark:border-stone-800">
+							<p class="text-stone-600 leading-relaxed text-sm dark:text-stone-400">{faq.a}</p>
 						</div>
 					</details>
 				))}
@@ -100,20 +100,20 @@ const developerFaqs = [
 		</section>
 
 		<section class="mb-14 text-center" id="for-consumers">
-			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6">For consumers</h2>
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6 dark:text-stone-100">For consumers</h2>
 			<div class="space-y-3 max-w-3xl mx-auto text-left">
 				{consumerFaqs.map((faq) => (
-					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
-							<span class="flex-1 text-left text-sm font-semibold text-stone-800">{faq.q}</span>
-							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden dark:bg-stone-900 dark:border-stone-700 dark:shadow-none">
+						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 dark:hover:bg-stone-800/50 dark:focus-visible:outline-stone-300">
+							<span class="flex-1 text-left text-sm font-semibold text-stone-800 dark:text-stone-200">{faq.q}</span>
+							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform dark:text-stone-500" aria-hidden="true">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
 									<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 								</svg>
 							</span>
 						</summary>
-						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100">
-							<p class="text-stone-600 leading-relaxed text-sm">{faq.a}</p>
+						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100 dark:border-stone-800">
+							<p class="text-stone-600 leading-relaxed text-sm dark:text-stone-400">{faq.a}</p>
 						</div>
 					</details>
 				))}
@@ -121,28 +121,28 @@ const developerFaqs = [
 		</section>
 
 		<section class="mb-14 text-center" id="for-developers">
-			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6">For developers</h2>
+			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6 dark:text-stone-100">For developers</h2>
 			<div class="space-y-3 max-w-3xl mx-auto text-left">
 				{developerFaqs.map((faq) => (
-					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
-						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800">
-							<span class="flex-1 text-left text-sm font-semibold text-stone-800">{faq.q}</span>
-							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform" aria-hidden="true">
+					<details class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden dark:bg-stone-900 dark:border-stone-700 dark:shadow-none">
+						<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 dark:hover:bg-stone-800/50 dark:focus-visible:outline-stone-300">
+							<span class="flex-1 text-left text-sm font-semibold text-stone-800 dark:text-stone-200">{faq.q}</span>
+							<span class="shrink-0 w-5 h-5 flex items-center justify-center text-stone-400 group-open:rotate-180 transition-transform dark:text-stone-500" aria-hidden="true">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
 									<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
 								</svg>
 							</span>
 						</summary>
-						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100">
-							<p class="text-stone-600 leading-relaxed text-sm">{faq.a}</p>
+						<div class="px-5 sm:px-6 pb-5 pt-0 border-t border-stone-100 dark:border-stone-800">
+							<p class="text-stone-600 leading-relaxed text-sm dark:text-stone-400">{faq.a}</p>
 						</div>
 					</details>
 				))}
 			</div>
 		</section>
 
-		<p class="text-sm text-stone-500 text-center max-w-2xl mx-auto">
-			We do not provide legal advice. For official opt-out procedures and deadlines, see the court-authorised sites (e.g. <a href="https://steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline">steamyouoweus.co.uk</a>, <a href="https://optout.steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline">optout.steamyouoweus.co.uk</a> for the UK claim; <a href="https://www.valvepublisherclassaction.com/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline">valvepublisherclassaction.com</a> for the US class action). Contact us: <a href="mailto:contact@stopsuingvalve.com" class="text-stone-700 underline hover:no-underline">contact@stopsuingvalve.com</a>.
+		<p class="text-sm text-stone-500 text-center max-w-2xl mx-auto dark:text-stone-400">
+			We do not provide legal advice. For official opt-out procedures and deadlines, see the court-authorised sites (e.g. <a href="https://steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">steamyouoweus.co.uk</a>, <a href="https://optout.steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">optout.steamyouoweus.co.uk</a> for the UK claim; <a href="https://www.valvepublisherclassaction.com/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">valvepublisherclassaction.com</a> for the US class action). Contact us: <a href="mailto:contact@stopsuingvalve.com" class="text-stone-700 underline hover:no-underline dark:text-stone-300">contact@stopsuingvalve.com</a>.
 		</p>
 	</article>
 </Layout>
