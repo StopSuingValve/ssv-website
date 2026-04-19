@@ -1,0 +1,109 @@
+---
+import type { DeadlineProgressBarConfig } from '../data/lawsuits';
+
+interface Props extends DeadlineProgressBarConfig {}
+
+function formatDayLabel(iso: string): string {
+	const parts = iso.split('-').map(Number);
+	if (parts.length !== 3 || parts.some((n) => Number.isNaN(n))) return iso;
+	const [y, m, d] = parts;
+	return new Date(y, m - 1, d).toLocaleDateString('en-GB', {
+		day: 'numeric',
+		month: 'short',
+		year: 'numeric',
+	});
+}
+
+const { title, periodStart, periodEnd, footnote } = Astro.props;
+const startLabel = formatDayLabel(periodStart);
+const endLabel = formatDayLabel(periodEnd);
+---
+
+<div
+	class="deadline-status-bar js-deadline-bar mt-4 pt-4 border-t border-stone-100 w-full max-w-full"
+	data-start={periodStart}
+	data-end={periodEnd}
+	data-title={title}
+	role="region"
+	aria-label={title}
+>
+	<h4 class="text-sm font-semibold text-stone-800 mb-2">{title}</h4>
+	<p class="text-xs text-stone-600 mb-1 js-deadline-summary min-h-[1.25rem]" aria-live="polite"></p>
+	<p class="text-xs text-stone-500 mb-3">
+		<strong class="text-stone-700">Deadline:</strong> {endLabel} (inclusive last day in the notice; confirm on official documents.)
+	</p>
+	<div
+		class="relative w-full h-3.5 rounded-full bg-stone-200 overflow-hidden border border-stone-300/80 shadow-inner"
+		role="progressbar"
+		aria-valuemin="0"
+		aria-valuemax="100"
+		aria-valuenow="0"
+		aria-label={`Progress through ${title}`}
+	>
+		<div
+			class="js-deadline-fill h-full min-w-0 rounded-full bg-stone-700 transition-[width] duration-500 ease-out"
+			style="width: 0%"
+		>
+		</div>
+	</div>
+	<div class="flex flex-wrap justify-between gap-x-4 gap-y-1 mt-2 text-xs text-stone-500">
+		<span>Window from <span class="text-stone-700 font-medium">{startLabel}</span></span>
+		<span>Through <span class="text-stone-700 font-medium">{endLabel}</span></span>
+	</div>
+	{footnote && <p class="mt-2 text-xs text-stone-500 leading-relaxed">{footnote}</p>}
+</div>
+
+<script is:inline>
+	(function () {
+		var DAY = 86400000;
+		function utcDayStart(iso) {
+			var p = String(iso).split('-');
+			var y = parseInt(p[0], 10);
+			var m = parseInt(p[1], 10);
+			var d = parseInt(p[2], 10);
+			if (isNaN(y) || isNaN(m) || isNaN(d)) return NaN;
+			return Date.UTC(y, m - 1, d);
+		}
+		function initBar(root) {
+			var start = utcDayStart(root.dataset.start);
+			var endDay = utcDayStart(root.dataset.end);
+			if (isNaN(start) || isNaN(endDay)) return;
+			var endExclusive = endDay + DAY;
+			var total = endExclusive - start;
+			if (total <= 0) return;
+			var now = Date.now();
+			var fill = root.querySelector('.js-deadline-fill');
+			var summary = root.querySelector('.js-deadline-summary');
+			var bar = root.querySelector('[role="progressbar"]');
+			if (!fill || !summary) return;
+			var pct = ((now - start) / total) * 100;
+			pct = Math.max(0, Math.min(100, pct));
+			fill.style.width = pct + '%';
+			if (bar) {
+				bar.setAttribute('aria-valuenow', String(Math.round(pct)));
+			}
+			if (now >= endExclusive) {
+				summary.textContent =
+					'This opt-out / opt-in window has ended by the official deadline. Check steamyouoweus.co.uk for any further notices.';
+			} else if (now < start) {
+				fill.style.width = '0%';
+				if (bar) bar.setAttribute('aria-valuenow', '0');
+				summary.textContent = 'The notice window has not started yet.';
+			} else {
+				var daysLeft = Math.ceil((endExclusive - now) / DAY);
+				summary.textContent =
+					daysLeft === 1
+						? 'About 1 day left in this window (calendar estimate).'
+						: 'About ' + daysLeft + ' days left in this window (calendar estimate).';
+			}
+		}
+		function run() {
+			document.querySelectorAll('.js-deadline-bar').forEach(initBar);
+		}
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', run);
+		} else {
+			run();
+		}
+	})();
+</script>

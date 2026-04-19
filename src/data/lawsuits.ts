@@ -37,6 +37,14 @@ export interface StatusMilestone {
 	status: MilestoneStatus;
 }
 
+/** Full-width deadline bar (dates as YYYY-MM-DD, UTC calendar-day math in the widget script) */
+export interface DeadlineProgressBarConfig {
+	title: string;
+	periodStart: string;
+	periodEnd: string;
+	footnote?: string;
+}
+
 export interface Lawsuit {
 	/** Unique id (used for anchor and DOM) */
 	id: string;
@@ -52,6 +60,8 @@ export interface Lawsuit {
 	content: string[];
 	/** Optional: official opt-out / notice URL */
 	optOutLink?: string;
+	/** Optional: official opt-in URL (e.g. non-UK-domiciled class members) */
+	optInLink?: string;
 	/** Optional: important documents / court papers URL */
 	documentsLink?: string;
 	/** Optional: label for documentsLink (default: "Important documents (court papers, notices)") */
@@ -66,6 +76,8 @@ export interface Lawsuit {
 	whatYouCanDo?: (string | { text: string; href?: string })[];
 	/** Optional: case status milestones for the status bar (filing, amendments, certification, etc.) */
 	statusMilestones?: StatusMilestone[];
+	/** Optional: full-width progress bar for the active opt-out / opt-in (or similar) window */
+	deadlineProgressBar?: DeadlineProgressBarConfig;
 }
 
 export const lawsuits: Lawsuit[] = [
@@ -82,6 +94,7 @@ export const lawsuits: Lawsuit[] = [
 		],
 		optInByDefault: true,
 		optOutLink: 'https://optout.steamyouoweus.co.uk/',
+		optInLink: 'https://optin.steamyouoweus.co.uk/',
 		documentsLink:
 			'https://steamyouoweus.co.uk/wp-content/uploads/2026/03/2026-03-11-Shotbolt-v-Valve-CPO-Notice-and-CPO-Annexed-updated.pdf',
 		documentsLinkLabel: 'Notice of Collective Proceedings Order (11 March 2026) (PDF)',
@@ -120,6 +133,13 @@ export const lawsuits: Lawsuit[] = [
 			},
 		],
 		deadline: 'Opt-out or opt-in: received or postmarked by 11 June 2026 (see official notice).',
+		deadlineProgressBar: {
+			title: 'Current phase: opt-out / opt-in window',
+			periodStart: '2026-03-11',
+			periodEnd: '2026-06-11',
+			footnote:
+				'Progress is approximate (calendar days). Requests must be received or postmarked by 11 June 2026—confirm wording on the official notice.',
+		},
 		statusMilestones: [
 			{ label: 'Claim and collective proceedings application filed at CAT', date: '5 June 2024', status: 'completed' },
 			{ label: 'Objections / submissions deadline', date: '25 July 2025', status: 'completed' },

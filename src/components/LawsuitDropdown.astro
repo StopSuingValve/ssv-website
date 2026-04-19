@@ -1,6 +1,7 @@
 ---
 import type { Lawsuit } from '../data/lawsuits';
 import { getRegionFlag, getRegionLabel } from '../data/lawsuits';
+import DeadlineStatusBar from './DeadlineStatusBar.astro';
 import StatusBar from './StatusBar.astro';
 
 interface Props {
@@ -17,6 +18,13 @@ const audienceLabel =
 		: lawsuit.audience === 'developer'
 			? 'Developer'
 			: 'Consumer & Developer';
+
+const optFormsHeading =
+	lawsuit.optOutLink && lawsuit.optInLink
+		? 'Official opt-out and opt-in'
+		: lawsuit.optOutLink
+			? 'Official opt-out'
+			: 'Official opt-in';
 ---
 
 <details
@@ -46,8 +54,58 @@ const audienceLabel =
 				<p>{paragraph}</p>
 			))}
 		</div>
+		{lawsuit.deadlineProgressBar && <DeadlineStatusBar {...lawsuit.deadlineProgressBar} />}
 		{lawsuit.statusMilestones && lawsuit.statusMilestones.length > 0 && (
 			<StatusBar milestones={lawsuit.statusMilestones} />
+		)}
+		{(lawsuit.optOutLink || lawsuit.optInLink) && (
+			<div class="mt-4 pt-4 border-t border-stone-100">
+				<h4 class="text-sm font-semibold text-stone-800 mb-1">{optFormsHeading}</h4>
+				<p class="text-xs text-stone-500 mb-3 leading-relaxed">
+					{lawsuit.optOutLink && lawsuit.optInLink
+						? 'Claimant forms open in a new tab. Use whichever applies after reading the notice and your circumstances (for example, domicile). We are not recommending one option over the other.'
+						: 'Claimant site opens in a new tab. Check the official notice for whether this applies to you and for deadlines.'}
+				</p>
+				<div
+					class:list={[
+						'flex flex-col gap-3',
+						lawsuit.optOutLink && lawsuit.optInLink ? 'sm:flex-row sm:items-stretch' : '',
+					]}
+				>
+					{lawsuit.optOutLink && (
+						<a
+							href={lawsuit.optOutLink}
+							target="_blank"
+							rel="noopener noreferrer"
+							class:list={[
+								'inline-flex flex-1 min-h-[48px] items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-stone-800 bg-white text-stone-800 text-sm font-semibold hover:bg-stone-800 hover:text-white transition-colors text-center',
+							]}
+						>
+							Opt out
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0 opacity-80" aria-hidden="true">
+								<path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
+								<path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553L7.106 11.693a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					)}
+					{lawsuit.optInLink && (
+						<a
+							href={lawsuit.optInLink}
+							target="_blank"
+							rel="noopener noreferrer"
+							class:list={[
+								'inline-flex flex-1 min-h-[48px] items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-stone-800 bg-white text-stone-800 text-sm font-semibold hover:bg-stone-800 hover:text-white transition-colors text-center',
+							]}
+						>
+							Opt in
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0 opacity-80" aria-hidden="true">
+								<path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
+								<path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553L7.106 11.693a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd" />
+							</svg>
+						</a>
+					)}
+				</div>
+			</div>
 		)}
 		{lawsuit.whatYouCanDo && lawsuit.whatYouCanDo.length > 0 && (
 			<div class="mt-4 pt-4 border-t border-stone-100">
@@ -69,7 +127,7 @@ const audienceLabel =
 				</ul>
 			</div>
 		)}
-		{(lawsuit.optOutLink || lawsuit.documentsLink || lawsuit.deadline || (lawsuit.documentLinks && lawsuit.documentLinks.length > 0)) && (
+		{(lawsuit.documentsLink || lawsuit.deadline || (lawsuit.documentLinks && lawsuit.documentLinks.length > 0)) && (
 			<div class="mt-4 pt-4 border-t border-stone-100">
 				<h4 class="text-sm font-semibold text-stone-800 mb-3">Resources</h4>
 				{lawsuit.deadline && (
@@ -86,20 +144,6 @@ const audienceLabel =
 							class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-stone-800 text-white text-sm font-medium hover:bg-stone-700 transition-colors"
 						>
 							{lawsuit.documentsLinkLabel ?? 'Important documents (court papers, notices)'}
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0" aria-hidden="true">
-								<path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
-								<path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553L7.106 11.693a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd" />
-							</svg>
-						</a>
-					)}
-					{lawsuit.optOutLink && (
-						<a
-							href={lawsuit.optOutLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-stone-800 text-white text-sm font-medium hover:bg-stone-700 transition-colors"
-						>
-							Official notice and opt-out
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0" aria-hidden="true">
 								<path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
 								<path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553L7.106 11.693a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd" />
