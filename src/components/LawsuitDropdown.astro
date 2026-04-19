@@ -30,10 +30,33 @@ const optFormsHeading =
 <details
 	class="group bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden dark:bg-stone-900 dark:border-stone-700 dark:shadow-none"
 >
-	<summary class="flex items-center gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 dark:hover:bg-stone-800/50 dark:focus-visible:outline-stone-300">
-		<span class="flex-1 text-left">
+	<summary class="flex flex-wrap items-center gap-2 sm:gap-3 cursor-pointer list-none px-5 sm:px-6 py-4 hover:bg-stone-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-800 dark:hover:bg-stone-800/50 dark:focus-visible:outline-stone-300">
+		<span class="flex-1 min-w-[12rem] text-left">
 			<span class="font-semibold text-stone-900 dark:text-stone-100">{lawsuit.name}</span>
 			<span class="text-stone-500 font-normal ml-1.5 dark:text-stone-400">({lawsuit.region} {regionFlag})</span>
+		</span>
+		<span class="shrink-0 inline-flex flex-wrap items-center gap-1.5">
+			<button
+				type="button"
+				class="lawsuit-link-btn shrink-0 inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-semibold border-2 border-stone-300 text-stone-700 bg-stone-50 hover:bg-stone-100 hover:border-stone-400 transition-colors cursor-pointer dark:border-stone-600 dark:text-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 dark:hover:border-stone-500"
+				data-lawsuit-id={lawsuit.id}
+				aria-label={`Copy link to this card: ${lawsuit.name}`}
+				onclick={`(function(ev,lawsuitId){ev.preventDefault();ev.stopPropagation();var url=location.origin+location.pathname+'#lawsuit-'+lawsuitId;var btn=ev.currentTarget;var label=btn&&btn.querySelector('[data-link-label]');function flash(ok){if(!label)return;var prev=label.textContent;label.textContent=ok?'Copied':'Copy failed';setTimeout(function(){label.textContent=prev;},2000);}function onOk(){flash(true);}function onFail(){flash(false);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(onOk).catch(onFail);}else{try{var t=document.createElement('textarea');t.value=url;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);onOk();}catch(e){onFail();}}})(event,'${lawsuit.id}')`}
+			>
+				<span data-link-label>Link</span>
+			</button>
+			<button
+				type="button"
+				class="giscus-discuss-btn shrink-0 inline-flex items-center px-2.5 py-1.5 rounded-lg text-xs font-semibold border-2 border-stone-300 text-stone-700 bg-stone-50 hover:bg-stone-100 hover:border-stone-400 transition-colors cursor-pointer dark:border-stone-600 dark:text-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 dark:hover:border-stone-500"
+				data-lawsuit-id={lawsuit.id}
+				data-lawsuit-name={lawsuit.name}
+				aria-label={`Open comments for ${lawsuit.name} (GitHub)`}
+				onclick={`(function(ev){ev.preventDefault();ev.stopPropagation();if(window.ssvOpenGiscus)window.ssvOpenGiscus('${lawsuit.id}');})(event)`}
+			>
+				<span aria-hidden="true">
+					Comments<span data-giscus-count-suffix></span>
+				</span>
+			</button>
 		</span>
 		<span class="shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-stone-200 text-stone-700 dark:bg-stone-700 dark:text-stone-200">
 			{audienceLabel}
@@ -63,8 +86,8 @@ const optFormsHeading =
 				<h4 class="text-sm font-semibold text-stone-800 mb-1 dark:text-stone-200">{optFormsHeading}</h4>
 				<p class="text-xs text-stone-500 mb-3 leading-relaxed dark:text-stone-400">
 					{lawsuit.optOutLink && lawsuit.optInLink
-						? 'Claimant forms open in a new tab. Use whichever applies after reading the notice and your circumstances (for example, domicile). We are not recommending one option over the other.'
-						: 'Claimant site opens in a new tab. Check the official notice for whether this applies to you and for deadlines.'}
+						? 'These forms open in a new tab and are run by the claimants or courts, not this site. The official notice explains which path applies to which people (for example, based on domicile).'
+						: 'Opens in a new tab. The official notice describes who is affected and any deadlines.'}
 				</p>
 				<div
 					class:list={[
@@ -109,7 +132,7 @@ const optFormsHeading =
 		)}
 		{lawsuit.whatYouCanDo && lawsuit.whatYouCanDo.length > 0 && (
 			<div class="mt-4 pt-4 border-t border-stone-100 dark:border-stone-800">
-				<h4 class="text-sm font-semibold text-stone-800 mb-2 dark:text-stone-200">What you can do</h4>
+				<h4 class="text-sm font-semibold text-stone-800 mb-2 dark:text-stone-200">Further reading & links</h4>
 				<ul class="list-disc list-inside space-y-1.5 text-sm text-stone-600 dark:text-stone-400">
 					{lawsuit.whatYouCanDo.map((item) => {
 						const text = typeof item === 'string' ? item : item.text;
@@ -174,7 +197,7 @@ const optFormsHeading =
 				class="stay-updated-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-stone-800 text-stone-800 text-sm font-medium hover:bg-stone-800 hover:text-white transition-colors dark:border-stone-300 dark:text-stone-100 dark:hover:bg-stone-300 dark:hover:text-stone-900"
 				data-region={lawsuit.region}
 				data-audience={lawsuit.audience}
-				onclick={`openNewsletterModal('${lawsuit.region}', '${lawsuit.audience}')`}
+				onclick={`openNewsletterModal('${lawsuit.region}', '${lawsuit.audience}', '${lawsuit.id}')`}
 			>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 shrink-0" aria-hidden="true">
 					<path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.162V6a2 2 0 0 0-2-2H3Z" />

@@ -15,7 +15,7 @@ const typeFilterOptions = [
 ];
 ---
 
-<Layout title="Stop Suing Valve" description="We inform developers and consumers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits.">
+<Layout title="Stop Suing Valve" description="Information on litigation involving Valve and Steam: what is active, what is ongoing, and links to official filings and notices.">
 	<article class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-20">
 		<!-- Hero -->
 		<header class="text-center mb-14 sm:mb-20">
@@ -26,7 +26,7 @@ const typeFilterOptions = [
 				Stop Suing Valve
 			</h1>
 			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto mb-10 dark:text-stone-400">
-				We inform developers and consumers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits. Choose your path below.
+				A reference for litigation and regulatory actions involving Valve and the Steam platform: short summaries, status, and primary sources. Use the shortcuts below if you want consumer- or developer-oriented entries first.
 			</p>
 			<!-- I'm a consumer / I'm a developer buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
@@ -48,7 +48,7 @@ const typeFilterOptions = [
 		<!-- Short mission -->
 		<section class="mb-14 max-w-3xl mx-auto text-center">
 			<p class="text-stone-600 leading-relaxed text-base sm:text-lg dark:text-stone-400">
-				Stop Suing Valve is a campaign to inform you about lawsuits such as the UK Steam You Owe Us claim and the US Valve Antitrust class action. We believe these suits misuse competition and consumer law and can harm the ecosystem. We do not support harassment of any company or person; we only provide factual information and opt-out options.
+				This site tracks public cases and proceedings as they appear—for example UK collective proceedings (Steam You Owe Us), the US <em>In re Valve Antitrust Litigation</em> class action, and the New York Attorney General’s <em>People of the State of New York v. Valve Corporation</em> filing on loot boxes—so you can see what is active, read the official documents, and follow updates. It is not legal advice, not affiliated with Valve or any law firm, and it does not tell you how to participate in a case. Where a class or collective regime includes an opt-out or opt-in, we link to the same official forms and notices the courts and parties publish.
 			</p>
 		</section>
 
@@ -58,7 +58,7 @@ const typeFilterOptions = [
 			<span id="for-developers" class="block scroll-mt-24" aria-hidden="true" />
 			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-6 dark:text-stone-100">Claims & lawsuits</h2>
 			<p class="text-stone-600 leading-relaxed mb-6 max-w-3xl mx-auto dark:text-stone-400">
-				Expand a lawsuit below to read what it is, who it affects, and—where applicable—how to remove yourself from default-opt-in classes.
+				Each card is one matter: venue, who it may concern, a plain-language summary, a simple timeline where we have dates, and buttons to official notices, dockets, or party pages. Filter by country or by consumer vs developer where that label is used on the docket or notice.
 			</p>
 			<!-- Country filter -->
 			<div class="flex flex-wrap justify-center gap-2 mb-3 text-left" role="group" aria-label="Filter by country">
@@ -145,7 +145,18 @@ const typeFilterOptions = [
 			const regionButtons = document.querySelectorAll('.lawsuit-filter-region');
 			const typeButtons = document.querySelectorAll('.lawsuit-filter-type');
 			const items = document.querySelectorAll('.lawsuit-item');
-			if (!list || !regionButtons.length || !typeButtons.length || !items.length) return;
+
+			if (!list || !regionButtons.length || !typeButtons.length || !items.length) {
+				window.openLawsuitFromHash = function () {
+					const id = decodeURIComponent(location.hash.slice(1));
+					if (!id || !id.startsWith('lawsuit-')) return;
+					const el = document.getElementById(id);
+					if (!el) return;
+					const details = el.querySelector('details');
+					if (details) details.open = true;
+				};
+				return;
+			}
 
 			let regionFilter = '';
 			let typeFilter = '';
@@ -243,6 +254,8 @@ const typeFilterOptions = [
 				}
 			}
 
+			window.openLawsuitFromHash = openLawsuitFromHash;
+
 			filterItems();
 			openLawsuitFromHash();
 			window.addEventListener('hashchange', openLawsuitFromHash);
@@ -260,7 +273,7 @@ const typeFilterOptions = [
 
 			<h2 class="text-xl sm:text-2xl font-semibold text-stone-900 mb-2 text-center dark:text-stone-100">Stay Updated</h2>
 			<p class="text-stone-600 text-center mb-6 dark:text-stone-400">
-				Subscribe to receive updates about this lawsuit, opt-out deadlines, and news.
+				If you would like occasional email updates on Valve- or Steam-related cases and deadlines (where they exist), pick the topics below. You can change or cancel this at any time.
 			</p>
 
 			<!-- Success message (hidden by default) -->
@@ -310,15 +323,19 @@ const typeFilterOptions = [
 							<input type="checkbox" name="l" value="ab148fcd-5b2e-4daf-95a0-d55293f43bb6" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							Developer Updates
 						</label>
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="us">
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="us-antitrust">
 							<input type="checkbox" name="l" value="fce9a0e1-04c9-405c-89d7-a6134d679b80" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
-							US Lawsuit Updates
+							US Antitrust Lawsuit Updates
 						</label>
 						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="uk">
 							<input type="checkbox" name="l" value="3ca8297e-93ca-4073-914b-64098a2b47ae" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
-							UK Lawsuit Updates
+							UK Shockbolt Lawsuit Updates
 						</label>
-						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer sm:col-span-2 dark:text-stone-400" data-list="new">
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="us-ag">
+							<input type="checkbox" name="l" value="9ebc9d64-0485-4805-a09e-e9de8ffcd035" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
+							US Attorney General Steam Lawsuit Updates
+						</label>
+						<label class="newsletter-list-label flex items-center gap-2 text-sm text-stone-600 cursor-pointer dark:text-stone-400" data-list="new">
 							<input type="checkbox" name="l" value="0ba81524-eeef-4a47-9d9a-00d7d4dacdbd" class="newsletter-list w-4 h-4 rounded border-stone-300 text-stone-700 focus:ring-stone-500 dark:border-stone-600 dark:bg-stone-950 dark:text-stone-300 dark:focus:ring-stone-400" />
 							New Lawsuits
 						</label>
@@ -348,6 +365,267 @@ const typeFilterOptions = [
 		</div>
 	</dialog>
 
+	<!-- Giscus: discuss the selected lawsuit (GitHub Discussions) -->
+	<dialog
+		id="giscus-dialog"
+		class="fixed inset-0 z-[60] w-[calc(100%-1.5rem)] max-w-3xl max-h-[90vh] mx-auto my-auto p-0 border-0 bg-transparent backdrop:bg-black/50 backdrop:backdrop-blur-sm"
+		aria-labelledby="giscus-dialog-title"
+	>
+		<div class="bg-white rounded-xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden dark:bg-stone-900 dark:shadow-stone-950/50">
+			<div class="shrink-0 flex items-start justify-between gap-3 px-4 sm:px-6 pt-4 sm:pt-5 pb-3 border-b border-stone-100 dark:border-stone-800">
+				<div class="min-w-0">
+					<h2 id="giscus-dialog-title" class="text-lg font-semibold text-stone-900 dark:text-stone-100">Discussion</h2>
+					<p class="text-xs text-stone-500 mt-1 dark:text-stone-400">
+						Comments via <a href="https://github.com/giscus/giscus" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">Giscus</a> and GitHub Discussions. Sign in with GitHub may leave this site briefly; when you return, this comments panel will open again automatically.
+					</p>
+				</div>
+				<button
+					type="button"
+					id="giscus-dialog-close"
+					class="shrink-0 text-stone-400 hover:text-stone-600 transition-colors dark:text-stone-500 dark:hover:text-stone-300"
+					aria-label="Close discussion"
+				>
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</button>
+			</div>
+			<div class="flex-1 min-h-0 overflow-y-auto px-3 sm:px-5 py-4">
+				<div class="giscus"></div>
+			</div>
+		</div>
+	</dialog>
+
+	<script is:inline>
+		(function () {
+			var GISCUS_PENDING_KEY = 'ssv-giscus-pending-oauth';
+			var GISCUS_PENDING_MAX_MS = 45 * 60 * 1000;
+
+			function giscusTermForLawsuitId(lawsuitId) {
+				return window.location.origin + window.location.pathname + '#lawsuit-' + lawsuitId;
+			}
+
+			/**
+			 * GitHub OAuth returns ?code=&state=; giscus may add ?giscus= for session.
+			 * Never strip ?giscus= before the giscus client has consumed it (see giscus ADVANCED-USAGE / GitHub issues).
+			 * Optionally remove code/state only after a delay.
+			 */
+			function stripCodeAndStateParamsPreserveGiscus(delayMs) {
+				window.setTimeout(function () {
+					try {
+						if (!location.search) return;
+						var p = new URLSearchParams(location.search);
+						if (!p.has('code') && !p.has('state')) return;
+						p.delete('code');
+						p.delete('state');
+						var q = p.toString();
+						var path = location.pathname + (q ? '?' + q : '') + (location.hash || '');
+						history.replaceState(null, '', path);
+					} catch (e) {}
+				}, typeof delayMs === 'number' ? delayMs : 6000);
+			}
+
+			function replaceStateKeepSearchWithHash(lawsuitId) {
+				try {
+					var h = '#lawsuit-' + lawsuitId;
+					var path = location.pathname + (location.search || '') + h;
+					history.replaceState(null, '', path);
+				} catch (e) {}
+			}
+
+			function readPendingGiscusLawsuit() {
+				try {
+					var raw = sessionStorage.getItem(GISCUS_PENDING_KEY);
+					if (!raw) return null;
+					var o = JSON.parse(raw);
+					if (!o || typeof o.lawsuitId !== 'string' || typeof o.t !== 'number') {
+						sessionStorage.removeItem(GISCUS_PENDING_KEY);
+						return null;
+					}
+					if (Date.now() - o.t > GISCUS_PENDING_MAX_MS) {
+						sessionStorage.removeItem(GISCUS_PENDING_KEY);
+						return null;
+					}
+					return o.lawsuitId;
+				} catch (e) {
+					try {
+						sessionStorage.removeItem(GISCUS_PENDING_KEY);
+					} catch (err) {}
+					return null;
+				}
+			}
+
+			function writePendingGiscusLawsuit(lawsuitId) {
+				try {
+					sessionStorage.setItem(
+						GISCUS_PENDING_KEY,
+						JSON.stringify({ lawsuitId: lawsuitId, t: Date.now() }),
+					);
+				} catch (e) {}
+			}
+
+			function clearPendingGiscusLawsuit() {
+				try {
+					sessionStorage.removeItem(GISCUS_PENDING_KEY);
+				} catch (e) {}
+			}
+
+			var giscusReopenScheduled = false;
+			function tryReopenGiscusAfterOAuthReturn() {
+				if (giscusReopenScheduled) return;
+				var lawsuitId = readPendingGiscusLawsuit();
+				if (!lawsuitId) return;
+				giscusReopenScheduled = true;
+				clearPendingGiscusLawsuit();
+				// Open immediately so client.js runs while ?giscus= / OAuth params are still on the URL.
+				if (typeof window.ssvOpenGiscus === 'function') {
+					window.ssvOpenGiscus(lawsuitId, { skipPendingWrite: true, fromOAuthReturn: true });
+				}
+				stripCodeAndStateParamsPreserveGiscus(8000);
+			}
+
+			function sendGiscusMessage(message) {
+				var iframe = document.querySelector('iframe.giscus-frame');
+				if (!iframe || !iframe.contentWindow) return false;
+				iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+				return true;
+			}
+
+			function applyGiscusTerm(term) {
+				return sendGiscusMessage({ setConfig: { term: term } });
+			}
+
+			function updateCommentsLabelForLawsuit(lawsuitId, totalCommentCount) {
+				if (!lawsuitId) return;
+				var btn = document.querySelector('.giscus-discuss-btn[data-lawsuit-id="' + lawsuitId + '"]');
+				if (!btn) return;
+				var suffix = btn.querySelector('[data-giscus-count-suffix]');
+				if (suffix) {
+					suffix.textContent = ' (' + String(totalCommentCount) + ')';
+				}
+				var caseName = btn.getAttribute('data-lawsuit-name') || 'this case';
+				btn.setAttribute(
+					'aria-label',
+					'Comments (' + totalCommentCount + ') for ' + caseName + ' — GitHub',
+				);
+			}
+
+			function lawsuitIdFromDiscussionUrl(url) {
+				if (typeof url !== 'string') return null;
+				var m = url.match(/#lawsuit-([^#?]+)/);
+				return m ? m[1] : null;
+			}
+
+			function onGiscusParentMessage(event) {
+				if (event.origin !== 'https://giscus.app') return;
+				var data = event.data;
+				if (!data || typeof data !== 'object' || !data.giscus) return;
+				var g = data.giscus;
+				if (g.discussion && typeof g.discussion.totalCommentCount === 'number') {
+					var id = lawsuitIdFromDiscussionUrl(g.discussion.url || '');
+					if (!id && window.__ssvLastGiscusTerm) {
+						id = lawsuitIdFromDiscussionUrl(window.__ssvLastGiscusTerm);
+					}
+					updateCommentsLabelForLawsuit(id, g.discussion.totalCommentCount);
+				}
+			}
+
+			window.addEventListener('message', onGiscusParentMessage);
+
+			function ensureGiscusScript(initialTerm) {
+				if (document.querySelector('script[data-ssv-giscus]')) return;
+				var s = document.createElement('script');
+				s.src = 'https://giscus.app/client.js';
+				s.async = true;
+				s.crossOrigin = 'anonymous';
+				s.setAttribute('data-ssv-giscus', '1');
+				s.setAttribute('data-repo', 'StopSuingValve/ssv-website');
+				s.setAttribute('data-repo-id', 'R_kgDORFE2Ow');
+				s.setAttribute('data-category', 'Discuss an ongoing lawsuit');
+				s.setAttribute('data-category-id', 'DIC_kwDORFE2O84C7NjO');
+				s.setAttribute('data-mapping', 'specific');
+				s.setAttribute('data-term', initialTerm);
+				s.setAttribute('data-strict', '1');
+				s.setAttribute('data-reactions-enabled', '1');
+				s.setAttribute('data-emit-metadata', '1');
+				s.setAttribute('data-input-position', 'top');
+				s.setAttribute('data-theme', 'preferred_color_scheme');
+				s.setAttribute('data-lang', 'en');
+				document.body.appendChild(s);
+			}
+
+			function waitForIframeAndSetTerm(term, maxAttempts) {
+				var n = 0;
+				var id = window.setInterval(function () {
+					if (applyGiscusTerm(term) || ++n >= (maxAttempts || 80)) {
+						window.clearInterval(id);
+					}
+				}, 50);
+			}
+
+			window.ssvOpenGiscus = function (lawsuitId, opts) {
+				var dialog = document.getElementById('giscus-dialog');
+				if (!dialog || !lawsuitId) return;
+				opts = opts || {};
+				var term = giscusTermForLawsuitId(lawsuitId);
+				window.__ssvLastGiscusTerm = term;
+				if (!opts.skipPendingWrite) {
+					writePendingGiscusLawsuit(lawsuitId);
+				}
+				// Keep ?giscus= / OAuth query params — replaceState with hash-only wipes them and breaks sign-in.
+				replaceStateKeepSearchWithHash(lawsuitId);
+				if (typeof window.openLawsuitFromHash === 'function') {
+					window.openLawsuitFromHash();
+				}
+				dialog.showModal();
+				var scriptPresent = !!document.querySelector('script[data-ssv-giscus]');
+				if (!scriptPresent) {
+					ensureGiscusScript(term);
+				} else {
+					if (!applyGiscusTerm(term)) {
+						waitForIframeAndSetTerm(term, 100);
+					}
+				}
+				// After OAuth redirect the iframe may need a full config refresh to pick up the new session.
+				if (opts.fromOAuthReturn) {
+					window.setTimeout(function () {
+						if (!applyGiscusTerm(term)) {
+							waitForIframeAndSetTerm(term, 120);
+						}
+					}, 300);
+					window.setTimeout(function () {
+						applyGiscusTerm(term);
+					}, 1200);
+				}
+			};
+
+			var giscusDialog = document.getElementById('giscus-dialog');
+			var giscusClose = document.getElementById('giscus-dialog-close');
+			if (giscusClose && giscusDialog) {
+				giscusClose.addEventListener('click', function () {
+					giscusDialog.close();
+				});
+			}
+			if (giscusDialog) {
+				giscusDialog.addEventListener('click', function (e) {
+					if (e.target === giscusDialog) giscusDialog.close();
+				});
+				giscusDialog.addEventListener('close', function () {
+					clearPendingGiscusLawsuit();
+				});
+			}
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', tryReopenGiscusAfterOAuthReturn);
+			} else {
+				tryReopenGiscusAfterOAuthReturn();
+			}
+			window.addEventListener('pageshow', function (ev) {
+				if (ev.persisted) tryReopenGiscusAfterOAuthReturn();
+			});
+		})();
+	</script>
+
 	<script>
 		(function() {
 			const modal = document.getElementById('newsletter-modal');
@@ -376,8 +654,8 @@ const typeFilterOptions = [
 				}
 			});
 
-			// Open modal with pre-selected lists
-			window.openNewsletterModal = function(region, audience) {
+			// Open modal with pre-selected lists (lawsuitId disambiguates US antitrust vs US AG)
+			window.openNewsletterModal = function(region, audience, lawsuitId) {
 				// Reset form state
 				form.classList.remove('hidden');
 				successEl.classList.add('hidden');
@@ -387,30 +665,43 @@ const typeFilterOptions = [
 
 				// If no region specified (general subscribe), select all lists
 				const selectAll = !region;
+				const regionUpper = region ? String(region).toUpperCase() : '';
 
 				// Configure checkboxes based on region and audience
 				// Pre-select relevant lists, but keep all enabled for user choice
 				listLabels.forEach(label => {
 					const checkbox = label.querySelector('input[type="checkbox"]');
 					const listType = label.dataset.list;
-					
+
 					let shouldCheck = selectAll; // If general subscribe, check all by default
 
 					if (!selectAll) {
-						// Region-based list (US/UK lawsuit updates)
-						if (listType === 'us' || listType === 'uk') {
-							if (listType === region.toLowerCase()) {
+						// US: antitrust list vs AG list depend on which case opened the modal
+						if (regionUpper === 'US') {
+							if (listType === 'us-antitrust') {
+								shouldCheck = lawsuitId === 'us-valve-antitrust';
+							} else if (listType === 'us-ag') {
+								shouldCheck = lawsuitId === 'us-ny-people-v-valve-gambling-2026';
+							} else if (listType === 'uk') {
+								shouldCheck = false;
+							} else if (listType === 'consumer' || listType === 'developer') {
+								if (audience === 'both' || audience === listType) {
+									shouldCheck = true;
+								}
+							} else if (listType === 'new') {
+								shouldCheck = false;
+							}
+						} else if (listType === 'uk') {
+							if (regionUpper === 'UK') {
 								shouldCheck = true;
 							}
-						}
-						// Audience-based list (consumer/developer)
-						else if (listType === 'consumer' || listType === 'developer') {
+						} else if (listType === 'us-antitrust' || listType === 'us-ag') {
+							shouldCheck = false;
+						} else if (listType === 'consumer' || listType === 'developer') {
 							if (audience === 'both' || audience === listType) {
 								shouldCheck = true;
 							}
-						}
-						// New lawsuits - not pre-checked for specific lawsuit
-						else if (listType === 'new') {
+						} else if (listType === 'new') {
 							shouldCheck = false;
 						}
 					}

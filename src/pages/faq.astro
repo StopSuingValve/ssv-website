@@ -4,22 +4,22 @@ import Layout from '../layouts/Layout.astro';
 const generalFaqs = [
 	{
 		q: 'What lawsuits does this site cover?',
-		a: 'We cover the UK Steam You Owe Us proceedings (Competition Appeal Tribunal Case 1640/7/7/24 — Vicki Shotbolt Class Representative Limited v Valve Corporation), which the Tribunal has certified as opt-out collective proceedings, and the US In re Valve Antitrust Litigation (Western District of Washington), which has a publisher/developer class and a separate consumer class. We provide summaries, timelines, and links to official resources and court documents so you can make an informed choice.',
+		a: 'The list is meant to grow as new public matters appear. Right now it includes, for example: UK Steam You Owe Us (Competition Appeal Tribunal Case 1640/7/7/24 — Vicki Shotbolt Class Representative Limited v Valve Corporation), certified as opt-out collective proceedings; US In re Valve Antitrust Litigation (Western District of Washington), with a publisher/developer class and a separate consumer class; and the New York Attorney General’s People of the State of New York v. Valve Corporation (Supreme Court of the State of New York, County of New York, Index No. 450952/2026), filed 25 February 2026, with links to the OAG complaint (PDF), press release, and Valve’s Steam Support FAQ. Each entry summarises what is on the public record and points to primary documents.',
 	},
 	{
 		q: 'Do you provide legal advice?',
-		a: 'No. We do not provide legal advice. We only provide information about these lawsuits and links to official, court-authorised sites (e.g. steamyouoweus.co.uk and optout.steamyouoweus.co.uk for the UK claim, valvepublisherclassaction.com for the US case). For opt-out procedures, deadlines, and class definitions, always rely on the official notices and, if needed, your own lawyer.',
+		a: 'No. Nothing here is legal advice. We summarise and link to official notices, court sites, and party pages (for example steamyouoweus.co.uk and optout.steamyouoweus.co.uk for the UK collective proceedings, valvepublisherclassaction.com for the US class action, and ag.ny.gov plus Valve’s Steam Support FAQ for the New York filing). For deadlines, class definitions, and procedures, rely on those official sources or a qualified lawyer in your jurisdiction.',
 	},
 	{
-		q: 'Why does this site link to opt-in (or other claimant pages) if you oppose suing Valve?',
-		a: 'We oppose these claims on the merits, but we still want the picture to be complete and honest. Tribunal notices and rules describe more than one path—staying in, opting out, and (for some people) opting in—so we link to the same official materials the claimants and courts publish. An opt-in link is there because the UK proceedings require certain non-UK-domiciled people to use that route if they wish to join; hiding it would mislead readers who need accurate procedural information. Pointing to an official opt-in page is not an endorsement of the lawsuit; it is documentation of how the process actually works.',
+		q: 'Why does this site link to claimant opt-out and opt-in pages?',
+		a: 'Tribunal and court notices often describe more than one path—for example staying in a class, opting out, or (for some people) opting in. We mirror the same official URLs the claimants and courts publish so the procedural picture is complete. Linking to a form is documentation of how the process works, not a recommendation that you use it one way or another.',
 	},
 ];
 
 const consumerFaqs = [
 	{
 		q: 'What is the Steam You Owe Us claim?',
-		a: 'Steam You Owe Us is the public name for UK collective proceedings at the Competition Appeal Tribunal: Vicki Shotbolt Class Representative Limited v Valve Corporation (Case 1640/7/7/24). The Tribunal granted a collective proceedings order on an opt-out basis ([2026] CAT 4, 26 January 2026) and made a Collective Proceedings Order on 11 March 2026. The class representative alleges that Valve abused a dominant position and that affected consumers are owed compensation. The Tribunal-directed class period runs from 4 June 2018 to 4 June 2024 for England, Wales and Northern Ireland, and from 1 January 2010 to 4 June 2024 for Scotland, for qualifying PC game and add-on content purchases (including via Steam or other distribution channels, as defined in the official notice). If successful, compensation could follow for those who remain in the class and meet distribution requirements. We oppose the framing of this claim and believe it misuses competition law; this site explains why and informs you so you can judge for yourself.',
+		a: 'Steam You Owe Us is the public name for UK collective proceedings at the Competition Appeal Tribunal: Vicki Shotbolt Class Representative Limited v Valve Corporation (Case 1640/7/7/24). The Tribunal granted a collective proceedings order on an opt-out basis ([2026] CAT 4, 26 January 2026) and made a Collective Proceedings Order on 11 March 2026. The class representative alleges that Valve abused a dominant position and that affected consumers are owed compensation. The Tribunal-directed class period runs from 4 June 2018 to 4 June 2024 for England, Wales and Northern Ireland, and from 1 January 2010 to 4 June 2024 for Scotland, for qualifying PC game and add-on content purchases (including via Steam or other distribution channels, as defined in the official notice). If successful, compensation could follow for those who remain in the class and meet distribution requirements. The home page links to the notice and judgments for the full legal test and definitions.',
 	},
 	{
 		q: 'Am I really owed money?',
@@ -27,23 +27,27 @@ const consumerFaqs = [
 	},
 	{
 		q: 'Is the UK claim opt-in or opt-out?',
-		a: 'The UK proceedings are opt-out collective proceedings before the CAT. If you are domiciled in the UK on 11 March 2026 and meet the class definition in the official notice, you are included unless you opt out by 11 June 2026 (requests must be received or postmarked by that date). If you are not UK-domiciled on that date but meet the other criteria and want to participate, you must opt in by the same deadline. The claimant’s opt-out webform is at optout.steamyouoweus.co.uk and opt-in at optin.steamyouoweus.co.uk; full rules and definitions are in the notice on steamyouoweus.co.uk. We only provide information; we do not tell you to opt in or out.',
+		a: 'The UK proceedings are opt-out collective proceedings before the CAT. Under the official notice, people who are UK-domiciled on 11 March 2026 and meet the class definition are included unless they opt out by 11 June 2026 (requests must be received or postmarked by that date). People who are not UK-domiciled on that date but meet the other criteria and wish to participate use the opt-in route by the same deadline. The claimant’s opt-out webform is at optout.steamyouoweus.co.uk and opt-in at optin.steamyouoweus.co.uk; full rules and definitions are in the notice on steamyouoweus.co.uk.',
 	},
 	{
 		q: 'What about the US lawsuit and consumers?',
 		a: 'The US case (In re Valve Antitrust Litigation) has a publisher/developer class (opt-out deadline September 2, 2025, has passed) and a separate consumer class for people who purchased PC games via Steam. The court appointed Cohen Milstein as Interim Lead Class Counsel for the consumer class in May 2025. In August 2025 the court granted a voluntary dismissal without prejudice for three named consumer plaintiffs, who are no longer class representatives for the putative consumer class but may remain as absent class members; other aspects of the consumer class are still proceeding. For official information and any consumer opt-out or deadlines, see valvepublisherclassaction.com and the court-authorised notices.',
 	},
 	{
-		q: 'Why oppose these claims?',
-		a: 'We believe the claims stretch competition and consumer law by treating standard store commission as “overcharging” and that large payouts or liability could affect Steam’s terms, regional pricing, or game availability. We also think it is important that consumers and developers understand both sides. We do not support harassment of anyone; we only provide information and, where relevant, opt-out options.',
+		q: 'What is the New York Attorney General case against Valve?',
+		a: 'In February 2026 the New York Office of the Attorney General filed People of the State of New York v. Valve Corporation in the Supreme Court of the State of New York, County of New York (Index No. 450952/2026). It is a government enforcement complaint under Executive Law § 63(12), not a private class action. The verified complaint and the Attorney General’s press release on ag.ny.gov describe the allegations and relief sought; Valve addresses the lawsuit on a Steam Support FAQ page. We link to those official sources on the home page and do not provide legal advice.',
+	},
+	{
+		q: 'What is this site for?',
+		a: 'It is a single place to see which Valve- or Steam-related cases are active, read short summaries and timelines, and open the underlying notices and filings. The goal is transparency and convenience, not to steer you toward or away from any party’s position.',
 	},
 	{
 		q: 'What about the 30% commission?',
-		a: 'Steam charges a commission (often cited as up to 30%) for games sold on its platform. The claims frame this as excessive or anti-competitive. Many digital storefronts charge similar or higher fees; whether that is legally “overcharging” is disputed. We believe the commission is a normal part of running a store and that treating it as automatic grounds for compensation misuses the law.',
+		a: 'Steam charges a commission (often cited as up to 30%) on sales through its store. The UK and US pleadings describe that fee using language such as excessive or anti-competitive; Valve and others dispute that characterisation. Many storefronts use similar fee models. The legal question is for courts and regulators; this site links to their documents rather than picking a side.',
 	},
 	{
-		q: 'Won’t compensation help gamers?',
-		a: 'The UK claim promises potential compensation (e.g. estimates of £22–£44 per person). Even if that were paid, the long-term effects could include changes to Steam’s business model, regional pricing, or developer revenue share—which could hurt the ecosystem. We think the trade-offs are worth understanding before supporting the claim.',
+		q: 'What does the UK claim say about compensation?',
+		a: 'The claimant materials discuss potential compensation (for example public estimates on the order of tens of pounds per person). Outcomes depend on the Tribunal and any settlement. Separately, commentators sometimes note that large damages or structural remedies could interact with how platforms price games or share revenue with developers; those are policy and business questions outside this site’s scope—we simply point to where the case is documented.',
 	},
 ];
 
@@ -58,23 +62,23 @@ const developerFaqs = [
 	},
 	{
 		q: 'How do these claims affect my revenue or Steam’s terms?',
-		a: 'If Valve faces large liability or payouts, it could respond by changing store terms, revenue share, or regional pricing. Indie and small publishers often have the most to lose from storefront uncertainty. We believe the US and UK claims both mischaracterise Steam’s commission and that succeeding could harm the ecosystem.',
+		a: 'Public filings discuss possible remedies and liability; if a case resulted in large damages or injunctive relief, a platform might adjust commercial terms, regional pricing, or developer shares—that is a matter of speculation and depends on facts and law. Smaller studios sometimes cite litigation uncertainty when planning distribution. This site does not predict outcomes; it links to the court papers and notices where those issues are argued.',
 	},
 	{
 		q: 'Isn’t Steam’s commission anti-competitive?',
-		a: 'The claims argue that Steam’s commission is excessive or anti-competitive. That view is contested. Many digital storefronts charge similar or higher fees. We believe treating standard store commission as automatically illegal stretches competition law and can hurt developers and consumers in the long run.',
+		a: 'Some complaints allege that Steam’s commission is excessive or anti-competitive under competition statutes; Valve disputes those allegations. Fee levels at other digital stores are often compared in commentary. Whether any of that violates the law is decided in the relevant tribunals and courts; here you get pointers to those records.',
 	},
 ];
 ---
 
-<Layout title="FAQ – Stop Suing Valve" description="Frequently asked questions for consumers and developers about collective actions against Valve and how to remove yourself from default-opt-in lawsuits.">
+<Layout title="FAQ – Stop Suing Valve" description="Frequently asked questions about litigation involving Valve and Steam: what this site lists, how to read official sources, and where to find class or collective notices.">
 	<article class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 		<header class="mb-12 text-center">
 			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight mb-4 dark:text-stone-100">
 				FAQ
 			</h1>
 			<p class="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-3xl mx-auto dark:text-stone-400">
-				Answers for consumers and developers about the UK and US claims against Valve and how to remove yourself from “opt-in by default” lawsuits where applicable.
+				General questions about how this site works, plus topic-based answers for consumers and developers. Content is informational only.
 			</p>
 		</header>
 
@@ -142,7 +146,7 @@ const developerFaqs = [
 		</section>
 
 		<p class="text-sm text-stone-500 text-center max-w-2xl mx-auto dark:text-stone-400">
-			We do not provide legal advice. For official opt-out procedures and deadlines, see the court-authorised sites (e.g. <a href="https://steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">steamyouoweus.co.uk</a>, <a href="https://optout.steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">optout.steamyouoweus.co.uk</a> for the UK claim; <a href="https://www.valvepublisherclassaction.com/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">valvepublisherclassaction.com</a> for the US class action). Contact us: <a href="mailto:contact@stopsuingvalve.com" class="text-stone-700 underline hover:no-underline dark:text-stone-300">contact@stopsuingvalve.com</a>.
+			We do not provide legal advice. For official opt-out procedures and deadlines, see the court-authorised sites (e.g. <a href="https://steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">steamyouoweus.co.uk</a>, <a href="https://optout.steamyouoweus.co.uk/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">optout.steamyouoweus.co.uk</a> for the UK claim; <a href="https://www.valvepublisherclassaction.com/" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">valvepublisherclassaction.com</a> for the US class action). For the New York Attorney General’s 2026 enforcement action, see the <a href="https://ag.ny.gov/sites/default/files/court-filings/new-york-v-valve-corporation-complaint-2026.pdf" target="_blank" rel="noopener noreferrer" class="text-stone-700 underline hover:no-underline dark:text-stone-300">complaint (PDF)</a> on ag.ny.gov. Contact us: <a href="mailto:contact@stopsuingvalve.com" class="text-stone-700 underline hover:no-underline dark:text-stone-300">contact@stopsuingvalve.com</a>.
 		</p>
 	</article>
 </Layout>
