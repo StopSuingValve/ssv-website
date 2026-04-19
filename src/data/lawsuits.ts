@@ -74,16 +74,38 @@ export const lawsuits: Lawsuit[] = [
 		name: 'Steam You Owe Us',
 		region: 'UK',
 		audience: 'consumer',
-		shortDescription: 'UK collective claim for PC gamers (opt-out by default).',
+		shortDescription: 'UK opt-out collective proceedings at the CAT (certified; opt-out/opt-in window open).',
 		content: [
-			"In the UK, a claim has been filed (Steam You Owe Us) at the Competition Appeal Tribunal arguing that Valve overcharged PC gamers and that consumers are owed compensation. The claim frames Steam's store commission as \"overcharging\" and stretches competition law. In reality, gamers bought products at the prices displayed; the idea that everyone \"overpaid\" in a clear legal sense is contested.",
-			"This claim is brought on an opt-out basis. You are automatically included in the proposed class if you paid for PC games or add-on content in the UK from 5 June 2018 (from 4 June 2018 for England, Wales and Northern Ireland; from 1 January 2010 for Scotland). If you do not want to be part of the claim, you will need to opt out. According to the claimant's FAQs, you will be given the chance to opt out if the claim is certified; they will publish an option for doing this on their website when the claim reaches that stage. We are not telling you to opt in or out—we are informing you so you can judge for yourself.",
-			"If such claims succeed, large payouts or liability could affect Steam's terms, regional pricing, or game availability. For the official class definition and opt-out information, see the claimant's FAQs (link below).",
+			'The campaign known as Steam You Owe Us relates to formal proceedings at the Competition Appeal Tribunal (CAT): Vicki Shotbolt Class Representative Limited v Valve Corporation (Case 1640/7/7/24). The class representative alleges that Valve abused a dominant position (including commission and platform rules) and that affected consumers are owed compensation. The Tribunal granted a collective proceedings order (CPO) on an opt-out basis in [2026] CAT 4 (judgment published 26 January 2026). A Collective Proceedings Order was made on 11 March 2026. We oppose the framing of this claim and believe it misuses competition law; we provide information so you can judge for yourself.',
+			'The class period in the Tribunal-directed notice runs from 4 June 2018 to 4 June 2024 for England, Wales and Northern Ireland, and from 1 January 2010 to 4 June 2024 for Scotland, for qualifying purchases of PC games and/or add-on content (including via Steam or other distribution channels, as described in the official notice). Whether you are in the class also depends on domicile on 11 March 2026 and other criteria in that notice. If you are UK-domiciled on that date and fall within the class definition, you do not need to act to remain in the proceedings; if you wish to be excluded, you must opt out. If you are not UK-domiciled on that date but otherwise meet the criteria and wish to participate, you must opt in. Opt-out and opt-in requests must be received or postmarked by 11 June 2026, per the official notice. We are not telling you to opt in or out.',
+			"If such claims succeed, large payouts or liability could affect Steam's terms, regional pricing, or game availability. Use the official notice (PDF link below), the claimant's site (steamyouoweus.co.uk), and the CAT judgment materials for exact definitions, procedures, and deadlines.",
 		],
 		optInByDefault: true,
-		documentsLink: 'https://steamyouoweus.co.uk/faqs/#classDefinition',
-		documentsLinkLabel: 'Class definition and opt-out information (claimant’s FAQs)',
+		optOutLink: 'https://optout.steamyouoweus.co.uk/',
+		documentsLink:
+			'https://steamyouoweus.co.uk/wp-content/uploads/2026/03/2026-03-11-Shotbolt-v-Valve-CPO-Notice-and-CPO-Annexed-updated.pdf',
+		documentsLinkLabel: 'Notice of Collective Proceedings Order (11 March 2026) (PDF)',
 		documentLinks: [
+			{
+				label: 'CAT judgment (CPO application) (PDF)',
+				href: 'https://www.catribunal.org.uk/sites/cat/files/2026-01/16407724%20Vicki%20Shotbolt%20Class%20Representative%20Limited%20v%20Valve%20Corporation%20-%20Judgment%20%28CPO%20Application%29%20%2026%20Jan%202026.pdf',
+			},
+			{
+				label: 'CAT judgment (CPO application) (HTML summary)',
+				href: 'https://www.catribunal.org.uk/judgments/16407724-vicki-shotbolt-class-representative-limited-v-valve-corporation-judgment-cpo',
+			},
+			{
+				label: 'Collective Proceedings Order (PDF)',
+				href: 'https://steamyouoweus.co.uk/wp-content/uploads/2026/03/COLLECTIVE-PROCEEDINGS-ORDER.pdf',
+			},
+			{
+				label: 'Collective Proceedings Claim Form (PDF)',
+				href: 'https://steamyouoweus.co.uk/wp-content/uploads/2026/03/COLLECTIVE-PROCEEDINGS-CLAIM-FORM.pdf',
+			},
+			{
+				label: 'Class definition (claimant’s FAQs)',
+				href: 'https://steamyouoweus.co.uk/faqs/#classDefinition',
+			},
 			{
 				label: 'Litigation Funding Agreement and Side Letter (PDF)',
 				href: 'https://steamyouoweus.co.uk/wp-content/uploads/2025/10/Litigation-Funding-Agreement-and-Side-Letter.pdf',
@@ -97,18 +119,26 @@ export const lawsuits: Lawsuit[] = [
 				href: 'https://steamyouoweus.co.uk/wp-content/uploads/2024/10/Summary-of-Collective-Proceedings-Claim-Form.pdf',
 			},
 		],
+		deadline: 'Opt-out or opt-in: received or postmarked by 11 June 2026 (see official notice).',
 		statusMilestones: [
-			{ label: 'Claim filed at CAT', date: '5 June 2024', status: 'completed' },
-			{ label: 'Application for Collective Proceedings filed', date: '5 June 2024', status: 'completed' },
+			{ label: 'Claim and collective proceedings application filed at CAT', date: '5 June 2024', status: 'completed' },
 			{ label: 'Objections / submissions deadline', date: '25 July 2025', status: 'completed' },
-			{ label: 'CPO hearing', date: '14 October 2025', status: 'completed' },
-			{ label: 'Certification decision (CPO granted or refused)', status: 'current' },
-			{ label: 'Opt-out period (if certified)', status: 'upcoming' },
+			{ label: 'CPO application hearing', date: '14 October 2025', status: 'completed' },
+			{ label: 'CPO granted ([2026] CAT 4)', date: '26 January 2026', status: 'completed' },
+			{ label: 'Collective Proceedings Order made', date: '11 March 2026', status: 'completed' },
+			{ label: 'Opt-out / opt-in period', date: 'ends 11 June 2026', status: 'current' },
 			{ label: 'Trial or settlement', status: 'upcoming' },
 			{ label: 'Distribution of compensation (if successful)', status: 'upcoming' },
 		],
 		whatYouCanDo: [
-			'Check the claimant’s FAQs for the class definition and opt-out information (link below). Opt-out will be available if the claim is certified.',
+			{
+				text: 'Read the official notice (PDF button above) and use the claimant’s opt-out form if you choose to leave the class (deadline 11 June 2026).',
+				href: 'https://optout.steamyouoweus.co.uk/',
+			},
+			{
+				text: 'If you are not UK-domiciled on 11 March 2026 but meet the other criteria and want to participate, use the claimant’s opt-in process by 11 June 2026 (see steamyouoweus.co.uk).',
+				href: 'https://optin.steamyouoweus.co.uk/',
+			},
 			'Contact your MP if you want to voice views on collective actions and consumer law.',
 			'Share this site with other UK consumers so they can make an informed choice.',
 			{ text: 'Read our FAQ for more Q&A.', href: '/faq' },
